@@ -67,7 +67,7 @@ namespace Game.Scripts
         [Button]
         private void OpenMyPanel()
         {
-            Navigation.Panel.Open(ViewTypes.MyPanel);
+            Navigation.Panel.Open(ViewTypes.InGamePanel);
         }
         [Button]
         private void CloseMyPanel()

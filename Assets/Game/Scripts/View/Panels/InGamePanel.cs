@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace Game.Scripts.View
 {
-    public class MyPanel : Panel
+    public class InGamePanel : Panel
     {
         [SerializeField] private Text _moneyText;
         [SerializeField] private Text _localizedText;
