@@ -231,7 +231,7 @@ MonoBehaviour:
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -367,6 +367,7 @@ GameObject:
   m_Component:
   - component: {fileID: 338776663}
   - component: {fileID: 338776664}
+  - component: {fileID: 338776665}
   m_Layer: 5
   m_Name: Popups
   m_TagString: Untagged
@@ -415,6 +416,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 150
   m_TargetDisplay: 0
+--- !u!114 &338776665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 338776662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 11575
 --- !u!224 &399570268 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5780722751405413900, guid: fa3ce366b11b329488aa0c3bfe6eefb9,
@@ -545,6 +563,7 @@ GameObject:
   m_Component:
   - component: {fileID: 529026436}
   - component: {fileID: 529026437}
+  - component: {fileID: 529026438}
   m_Layer: 5
   m_Name: Panels
   m_TagString: Untagged
@@ -595,6 +614,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 100
   m_TargetDisplay: 0
+--- !u!114 &529026438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 529026435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 11575
 --- !u!224 &704404802 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5780722751405413900, guid: fa3ce366b11b329488aa0c3bfe6eefb9,
@@ -1388,6 +1424,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _coinElement: {fileID: 704404803}
+  _claimButton: {fileID: 176069944}
 --- !u!1 &1484352096
 GameObject:
   m_ObjectHideFlags: 0
@@ -1516,6 +1553,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1492933826}
   - component: {fileID: 1492933827}
+  - component: {fileID: 1492933828}
   m_Layer: 5
   m_Name: Overlay
   m_TagString: Untagged
@@ -1564,6 +1602,23 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 200
   m_TargetDisplay: 0
+--- !u!114 &1492933828
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1492933825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 11575
 --- !u!1 &1539040587
 GameObject:
   m_ObjectHideFlags: 0
