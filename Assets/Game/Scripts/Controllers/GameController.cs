@@ -19,6 +19,8 @@ namespace Game.Scripts.Controllers
         //[SerializeField] private ParticleSystem _confetti;
 
         [SerializeField] private List<LevelBehaviour> _levels;
+
+        [SerializeField] private InputController _inputController;
         public LevelBehaviour CurrentLevel { get; private set; }
 
         protected override void Awake()
@@ -27,6 +29,9 @@ namespace Game.Scripts.Controllers
 
             LocalizationManager.Init();
             LocalizationManager.SetLanguage(Language.Turkish);
+
+            _inputController.Init();
+
             PrepareLevel();
         }
 
@@ -40,16 +45,13 @@ namespace Game.Scripts.Controllers
 
             Navigation.Panel.Change(ViewTypes.MainMenuPanel);
 
-            //ViewController.Instance.LoadingView.Close();
-            //ViewController.Instance.MainMenuView.Open(new MainMenuViewParameters(StartGame));
+            InputController.Toggle(true);
         }
 
         [Button]
         private void StartGame()
         {
             Navigation.Panel.Change(ViewTypes.InGamePanel);
-
-            //_player.Initialize();
         }
 
         private void DisposeLevel()
