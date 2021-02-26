@@ -1,18 +1,52 @@
-﻿using MekNavigation;
+﻿using Game.Scripts.Models;
+using Game.Scripts.View.Elements;
+using MekNavigation;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 namespace Assets.Game.Scripts.View.Panels
 {
     public class GameOverPanel : Panel
     {
+        [SerializeField] private CurrencyElement _coinElement;
+
+        private GameOverViewParams _params;
+
         public override void Open(ViewParams viewParams)
         {
+            _params = viewParams as GameOverViewParams;
+
+            if (_params == null) return;
+
+            InitializeElements();
+
             base.Open(viewParams);
         }
 
         public override void Close()
         {
+            DisposeElements();
+
             base.Close();
+        }
+
+        private void InitializeElements()
+        {
+            _coinElement.Init(PlayerData.Instance.Coin);
+            Debug.Log($"IsSuccess: {_params.IsSuccess}, Earning: {_params.EarnAmount}");
+        }
+
+        private void DisposeElements()
+        {
+
+        }
+
+        [Button]
+        public void OnClaimButtonClicked()
+        {
+            Debug.Log($"Current: {PlayerData.Instance.Coin}, After: {PlayerData.Instance.Coin + _params.EarnAmount}");
+            _coinElement.UpdateValue(PlayerData.Instance.Coin);
+            _params.RewardClaimed?.Invoke();
         }
     }
 }

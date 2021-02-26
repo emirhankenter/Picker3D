@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Game.Scripts.Behaviours;
+using Game.Scripts.Behaviours;
 using Game.Scripts.Models;
 using Mek.Controllers;
 using Mek.Localization;
@@ -48,8 +48,6 @@ namespace Game.Scripts.Controllers
         private void StartGame()
         {
             Navigation.Panel.Change(ViewTypes.InGamePanel);
-            //ViewController.Instance.MainMenuView.Close();
-            //ViewController.Instance.InGameView.Open(new InGameViewParameters());
 
             //_player.Initialize();
         }
@@ -63,33 +61,27 @@ namespace Game.Scripts.Controllers
             PrepareLevel();
         }
 
-        private void NextLevel()
-        {
-            DisposeLevel();
-        }
-
         [Button]
         private void OnLevelCompleted(bool isSuccess)
         {
             CurrentLevel.Completed -= OnLevelCompleted;
 
-            Navigation.Panel.Change(ViewTypes.GameOverPanel);//todo delete
+            var earnAmount = PlayerData.Instance.PlayerLevel * 50;
+
+            Navigation.Panel.Change(new GameOverViewParams(isSuccess, earnAmount, OnRewardClaimed));
             if (isSuccess)
             {
-                var earnAmount = PlayerData.Instance.PlayerLevel * 50;
                 PlayConfetti?.Invoke(() =>
                 {
-                    Navigation.Panel.Change(ViewTypes.GameOverPanel);
-                    //ViewController.Instance.InGameView.Close();
-                    //ViewController.Instance.GameOverView.Open(new GameOverViewParameters(earnAmount, OnRewardClaimed));
+                    Navigation.Panel.Change(new GameOverViewParams(true, earnAmount, OnRewardClaimed));
                 });
                 PlayerData.Instance.PlayerLevel++;
-                //PlayerData.Coin += earnAmount;
+                PlayerData.Instance.Coin += earnAmount;
             }
             else
             {
-                //ViewController.Instance.InGameView.Close();
-                DisposeLevel();
+                Navigation.Panel.Change(new GameOverViewParams(false, earnAmount, OnRewardClaimed));
+                //DisposeLevel();
             }
         }
 
@@ -98,7 +90,7 @@ namespace Game.Scripts.Controllers
             CoroutineController.DoAfterGivenTime(2f, () =>
             {
                 //ViewController.Instance.GameOverView.Close();
-                NextLevel();
+                DisposeLevel();
             });
         }
 

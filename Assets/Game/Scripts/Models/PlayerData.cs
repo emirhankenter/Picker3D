@@ -16,7 +16,7 @@ namespace Game.Scripts.Models
             // Game Specific PLayerData
             { PrefStats.PlayerLevel, new IntStat(0, Int32.MaxValue, 1) },
             { PrefStats.LastActive, new DateStat(DateTime.UtcNow) },
-            //{ PrefStats.MyTest,  new ObjectStat<TestStruct>(JsonUtility.ToJson(new TestStruct(){Number = 100}))}
+            { PrefStats.Coin, new FloatStat(0f, float.MaxValue, 0f) },
         };
 
         public DateTime LastActive
@@ -31,10 +31,10 @@ namespace Game.Scripts.Models
             set => PrefsManager.SetInt(PrefStats.PlayerLevel, value);
         }
 
-        public TestStruct MyTest
+        public float Coin
         {
-            get => PrefsManager.GetObject<TestStruct>(PrefStats.MyTest);
-            set => PrefsManager.SetObject(PrefStats.MyTest, value);
+            get => PrefsManager.GetFloat(PrefStats.Coin);
+            set => PrefsManager.SetFloat(PrefStats.Coin, value);
         }
 
         #region Singleton

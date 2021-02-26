@@ -1,7 +1,8 @@
 ﻿using System;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
-namespace Assets.Game.Scripts.Behaviours
+namespace Game.Scripts.Behaviours
 {
     public class LevelBehaviour : MonoBehaviour
     {
@@ -17,6 +18,7 @@ namespace Assets.Game.Scripts.Behaviours
         {
         }
 
+        [Button]
         private void OnPlayerFinished(bool isSuccess)
         {
             Completed?.Invoke(isSuccess);

@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections;
-using DG.Tweening;
-using Mek.Extensions;
+﻿using DG.Tweening;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 namespace Mek.Generics
@@ -18,17 +14,22 @@ namespace Mek.Generics
             SetCurrent(current);
         }
 
-        public void SetCurrent(float current)
+        public void SetCurrent(float current, bool roundToInt = false)
         {
             Current = current;
+
+            if (roundToInt)
+            {
+                Current = Mathf.RoundToInt(Current);
+            }
             Text.text = Current.ToString();
         }
 
-        public void UpdateValue(float to, float duration = 0.5f)
+        public void UpdateValue(float to, float duration = 0.5f, bool roundToInt = false)
         {
             DOTween.To(
                 getter: () => Current,
-                setter: SetCurrent,
+                setter: current => SetCurrent(current, roundToInt),
                 endValue: to,
                 duration);
         }

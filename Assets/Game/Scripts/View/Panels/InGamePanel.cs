@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Game.Scripts.Models;
+using Game.Scripts.View.Elements;
 using Mek.Generics;
 using Mek.Localization;
 using MekNavigation;
@@ -11,22 +13,14 @@ namespace Game.Scripts.View
 {
     public class InGamePanel : Panel
     {
-        [SerializeField] private Text _moneyText;
+        [SerializeField] private CurrencyElement _coinElement;
         [SerializeField] private Text _localizedText;
 
-        private static NumberAnimator _moneyAnimator;
         public override void Open(ViewParams viewParams)
         {
             base.Open(viewParams);
 
-            if (_moneyAnimator == null)
-            {
-                _moneyAnimator = new NumberAnimator(100, _moneyText);
-            }
-            else
-            {
-                _moneyAnimator.SetCurrent(500);
-            }
+            InitializeElements();
 
             if (LocalizationManager.TryGetTranslationWithParameter("TIME LEFT", "time", "40", out string loc))
             {
@@ -36,13 +30,29 @@ namespace Game.Scripts.View
 
         public override void Close()
         {
+            DisposeElements();
+
             base.Close();
         }
 
-        [Button]
-        public void UpdateMoneyTo(float to = 1000)
+        private void InitializeElements()
         {
-            _moneyAnimator.UpdateValue(to);
+            _coinElement.Init(PlayerData.Instance.Coin);
+
+            _localizedText.gameObject.SetActive(false);
         }
+
+        private void DisposeElements()
+        {
+
+        }
+
+        [Button]
+        public void EarnMoney(float amount = 10)
+        {
+            PlayerData.Instance.Coin += amount;
+            _coinElement.UpdateValue(PlayerData.Instance.Coin);
+        }
+
     }
 }

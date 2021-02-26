@@ -47,7 +47,20 @@ namespace MekNavigation
 
         public bool Change(ViewParams viewParams)
         {
-            return Change(viewParams.Key);
+            if (_activeView != null)
+            {
+                _activeView.Closed += OnViewClosed;
+                _activeView.Close();
+            }
+
+            void OnViewClosed()
+            {
+                _activeView.Closed -= OnViewClosed;
+                _activeView = null;
+            }
+
+            return Open(viewParams);
+            //return Change(viewParams.Key);
         }
         public bool Change(string viewType)
         {
