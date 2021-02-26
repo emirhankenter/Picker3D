@@ -1,0 +1,65 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3dbc7756eab981744a1e6ebe9285dce7, type: 3}
+  m_Name: Localization
+  m_EditorClassIdentifier: 
+  Dictionary:
+    m_keys:
+    - DEFEAT
+    - TIME LEFT
+    - HI
+    - LEVEL
+    - VICTORY
+    - CLAIM
+    - PLAY
+    - TRY AGAIN
+    m_values:
+    - m_keys: 000000000100000002000000
+      m_values:
+      - BOZGUN
+      - DEFEAT
+      - "LA SCONFITTA\r"
+    - m_keys: 000000000100000002000000
+      m_values:
+      - 'KALAN ZAMAN: {time}'
+      - 'TIME LEFT: {time}'
+      - 'TEMPO RIMASTO: {time}'
+    - m_keys: 000000000100000002000000
+      m_values:
+      - SELAM
+      - HI
+      - "CIAO\r"
+    - m_keys: 000000000100000002000000
+      m_values:
+      - SEVIYE
+      - LEVEL
+      - "LIVELLO\r"
+    - m_keys: 000000000100000002000000
+      m_values:
+      - ZAFER
+      - VICTORY
+      - "VITTORIA\r"
+    - m_keys: 000000000100000002000000
+      m_values:
+      - KAZAN
+      - CLAIM
+      - "RICHIESTA\r"
+    - m_keys: 000000000100000002000000
+      m_values:
+      - OYNA
+      - PLAY
+      - "GIOCARE\r"
+    - m_keys: 000000000100000002000000
+      m_values:
+      - YENIDEN OYNA
+      - TRY AGAIN
+      - "RIPROVA\r"
