@@ -17,5 +17,12 @@ namespace Game.Scripts.Behaviours.EventTriggerers
         protected virtual void TriggerEnter(IPicker picker)
         {
         }
+
+        private void OnDrawGizmos()
+        {
+            DrawGizmos();
+        }
+
+        protected virtual void DrawGizmos(){}
     }
 }

@@ -82,7 +82,7 @@ namespace Game.Scripts.Controllers
             }
             else
             {
-                Navigation.Panel.Change(new GameOverViewParams(false, earnAmount, OnRewardClaimed));
+                //Navigation.Panel.Change(new GameOverViewParams(false, earnAmount, OnRewardClaimed));
                 //DisposeLevel();
             }
         }

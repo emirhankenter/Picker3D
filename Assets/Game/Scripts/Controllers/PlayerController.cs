@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Game.Scripts.Behaviours.EventTriggerers;
 using MekCoroutine;
 using UnityEngine;
 
@@ -7,15 +8,17 @@ namespace Game.Scripts.Controllers
 {
     public interface IPicker
     {
-        void OnStageCleared();
+        void OnStageCleared(StageFinishTriggerer stage);
     }
 
     public class PlayerController : MonoBehaviour, IPicker
     {
+        public event Action<StageFinishTriggerer, Action> OnStageCompleted;
+
         private Vector2 _firstInput;
         private Vector2 _drag;
 
-        private const float _steerSpeed = 25f;
+        private const float _steerSpeed = 20f;
         private const float _forwardSpeed = 15f;
         private const float _bounds = 7.5f;
 
@@ -23,15 +26,15 @@ namespace Game.Scripts.Controllers
 
         private string _movementRoutineKey => $"movementRoutine{GetInstanceID()}";
 
-        private void Awake()
-        {
-            Init();
-        }
+        //private void Awake()
+        //{
+        //    Init();
+        //}
 
-        private void OnDestroy()
-        {
-            Dispose();
-        }
+        //private void OnDestroy()
+        //{
+        //    Dispose();
+        //}
 
         public void Init()
         {
@@ -105,16 +108,13 @@ namespace Game.Scripts.Controllers
             }
         }
 
-        public void OnStageCleared()
+        public void OnStageCleared(StageFinishTriggerer stage)
         {
             Debug.Log($"Stage has cleared!");
 
             ToggleMovement(false);
 
-            CoroutineController.DoAfterGivenTime(2f, () =>
-            {
-                ToggleMovement(true);
-            });
+            OnStageCompleted?.Invoke(stage, () => ToggleMovement(true));
         }
     }
 }
