@@ -19,7 +19,8 @@ namespace Game.Scripts.Behaviours
             CoroutineController.DoAfterGivenTime(Random.Range(0f,0.2f), () =>
             {
                 Pop();
-                Destroy(gameObject);
+
+                CoroutineController.DoAfterFixedUpdate(() => Destroy(gameObject));
             });
         }
 

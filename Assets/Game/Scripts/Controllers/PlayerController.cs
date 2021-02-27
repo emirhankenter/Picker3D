@@ -22,7 +22,8 @@ namespace Game.Scripts.Controllers
         private Vector2 _firstInput;
         private Vector2 _drag;
 
-        private const float _steerSpeed = 26f;
+        private const float _steerSpeed = 12f;
+        private const float _maxXVelocity = 36f;
         private const float _forwardSpeed = 15f;
         private const float _bounds = 7.5f;
 
@@ -98,10 +99,17 @@ namespace Game.Scripts.Controllers
         private IEnumerator MovementRoutine()
         {
             while (true)
-            {
-                _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.normalized.x * _steerSpeed, 0.4f, _forwardSpeed), Time.fixedDeltaTime* 15f);
+            { 
+                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.x * _steerSpeed, 0.4f, _forwardSpeed), Time.fixedDeltaTime* 15f);
+
+                velocity.x = Mathf.Clamp(velocity.x, -_maxXVelocity, _maxXVelocity);
+
+                _rb.velocity = velocity;
+
                 _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), _rb.transform.position.y,
                     _rb.transform.position.z);
+
+                Debug.Log($"XVelocity: {_rb.velocity.x}");
 
                 yield return new WaitForFixedUpdate();
             }
