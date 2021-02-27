@@ -77,15 +77,16 @@ namespace Game.Scripts.Behaviours.EventTriggerers
                 collectible.Collected();
             }
 
-            if(canPass) AllowPass();
+            yield return new WaitForSeconds(0.5f);
+            if (canPass) AllowPass();
             Result?.Invoke(canPass);
         }
 
         private void AllowPass()
         {
-            _ground.transform.DOLocalMove(new Vector3(_ground.transform.localPosition.x, 0f, _ground.transform.localPosition.z), 0.3f).SetEase(Ease.OutBack);
+            _ground.transform.DOLocalMove(new Vector3(_ground.transform.localPosition.x, 0f, _ground.transform.localPosition.z), 0.4f).SetEase(Ease.OutBack);
 
-            _ground.material.DOColor(new Color(91f / 255f, 137 / 255f, 14f / 255f, 1), 0.3f).SetEase(Ease.Linear);
+            _ground.material.DOColor(new Color(91f / 255f, 137 / 255f, 14f / 255f, 1), 0.4f).SetEase(Ease.Linear);
         }
     }
 }
