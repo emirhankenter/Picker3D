@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Game.Scripts.Behaviours;
 using Game.Scripts.Models;
-using Game.Utilities;
+using Game.Scripts.Utilities;
 using Mek.Controllers;
 using Mek.Localization;
 using MekCoroutine;
@@ -21,8 +21,11 @@ namespace Game.Scripts.Controllers
 
         [SerializeField] private List<LevelBehaviour> _levels;
 
-        [SerializeField] private InputController _inputController;
+        //[SerializeField] private InputController _inputController;
+        [SerializeField] private DragHandler _dragHandler;
         public LevelBehaviour CurrentLevel { get; private set; }
+
+        public DragHandler DragHandler => _dragHandler;
 
         protected override void Awake()
         {
@@ -32,7 +35,7 @@ namespace Game.Scripts.Controllers
             LocalizationManager.SetLanguage(Language.Turkish);
             PrepareLevel();
 
-            _inputController.Init();
+            //_inputController.Init();
         }
 
 
@@ -47,7 +50,8 @@ namespace Game.Scripts.Controllers
 
             CrossfadeTransition.FadeOut(1f, () =>
             {
-                InputController.Toggle(true);
+                _dragHandler.ToggleInput(true);
+                //InputController.Toggle(true);
             });
         }
 
@@ -92,8 +96,7 @@ namespace Game.Scripts.Controllers
             });
         }
 
-
         public static GameController _instance;
-        public static GameController Instance => _instance = _instance ? _instance : FindObjectOfType<GameController>();
+        public static GameController Instance => _instance = _instance ? _instance : _instance = FindObjectOfType<GameController>();
     }
 }

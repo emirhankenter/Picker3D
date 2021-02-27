@@ -3,7 +3,7 @@ using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Game.Utilities
+namespace Game.Scripts.Utilities
 {
     public class CrossfadeTransition : MonoBehaviour
     {

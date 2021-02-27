@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Game.Scripts.Behaviours;
+using Game.Scripts.Utilities;
 using Game.Scripts.View.Elements;
 using MekCoroutine;
 using UnityEngine;
@@ -64,14 +65,20 @@ namespace Game.Scripts.Controllers
 
         private void RegisterEvents()
         {
-            InputController.PressPerformed += OnPressPerformed;
-            InputController.PressCanceled += OnPressCanceled;
+            DragHandler.PointerDown += OnPressPerformed;
+            DragHandler.PointerUp += OnPressCanceled;
+
+            //InputController.PressPerformed += OnPressPerformed;
+            //InputController.PressCanceled += OnPressCanceled;
         }
 
         private void UnRegisterEvents()
         {
-            InputController.PressPerformed -= OnPressPerformed;
-            InputController.PressCanceled -= OnPressCanceled;
+            DragHandler.PointerDown -= OnPressPerformed;
+            DragHandler.PointerUp -= OnPressCanceled;
+
+            //InputController.PressPerformed -= OnPressPerformed;
+            //InputController.PressCanceled -= OnPressCanceled;
         }
 
         private void ToggleMovement(bool state)
@@ -89,7 +96,8 @@ namespace Game.Scripts.Controllers
                 ToggleMovement(true);
             }
 
-            InputController.MovePerformed += OnMovePerformed;
+            //InputController.MovePerformed += OnMovePerformed;
+            DragHandler.MovePerformed += OnMovePerformed;
 
             if (_inTapTapZone || CoroutineController.IsCoroutineRunning(_tapRoutineKey))
             {
@@ -101,7 +109,8 @@ namespace Game.Scripts.Controllers
         {
             _drag = Vector2.zero;
             _rb.velocity = new Vector3(0, _rb.velocity.y, _rb.velocity.z);
-            InputController.MovePerformed -= OnMovePerformed;
+            DragHandler.MovePerformed -= OnMovePerformed;
+            //InputController.MovePerformed -= OnMovePerformed;
         }
 
         private void OnMovePerformed(Vector2 obj)
@@ -174,7 +183,8 @@ namespace Game.Scripts.Controllers
             CoroutineController.ToggleRoutine(false, _tapRoutineKey, TapTapRoutine());
             VerticalProgressBar.Stop();
             _rb.drag = 0.63f;
-            InputController.Toggle(false);
+            //InputController.Toggle(false);
+            GameController.Instance.DragHandler.ToggleInput(false);
             OnStageCompleted?.Invoke(() =>
             {});
             //ToggleMovement(false);

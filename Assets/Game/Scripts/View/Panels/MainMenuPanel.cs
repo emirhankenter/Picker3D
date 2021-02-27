@@ -1,5 +1,7 @@
 ﻿using DG.Tweening;
 using Game.Scripts.Controllers;
+using Game.Scripts.Utilities;
+using MekCoroutine;
 using MekNavigation;
 using UnityEngine;
 
@@ -12,8 +14,13 @@ namespace Assets.Game.Scripts.View.Panels
         public override void Open(ViewParams viewParams)
         {
             base.Open(viewParams);
-            InputController.PressPerformed += OnPressPerformed;
-            InitializeElements();
+            //InputController.PressPerformed += OnPressPerformed;
+
+            CoroutineController.DoAfterCondition(() => GameController.Instance.DragHandler.IsActive, () =>
+            {
+                DragHandler.PointerDown += OnPressPerformed;
+                InitializeElements();
+            });
         }
 
         public override void Close()
@@ -25,7 +32,8 @@ namespace Assets.Game.Scripts.View.Panels
 
         private void OnPressPerformed(Vector2 obj)
         {
-            InputController.PressPerformed -= OnPressPerformed;
+            //InputController.PressPerformed -= OnPressPerformed;
+            DragHandler.PointerDown -= OnPressPerformed;
 
             Navigation.Panel.Change(ViewTypes.InGamePanel);
         }

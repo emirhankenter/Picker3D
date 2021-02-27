@@ -21,11 +21,11 @@ namespace Game.Scripts.Controllers
         //private const float _updateIteration = 0.02f;
 
         private string _mouseEventRoutineKey => $"MouseEventRoutine{GetInstanceID()}";
-        public void Init()
-        {
-            IsActive = false;
-            MouseEventRoutine().StartCoroutine(_mouseEventRoutineKey);
-        }
+        //public void Init()
+        //{
+        //    IsActive = false;
+        //    MouseEventRoutine().StartCoroutine(_mouseEventRoutineKey);
+        //}
 
         public void Dispose()
         {
