@@ -96,5 +96,8 @@ namespace Game.Scripts.Controllers
             });
         }
 
+
+        public static GameController _instance;
+        public static GameController Instance => _instance = _instance ? _instance : FindObjectOfType<GameController>();
     }
 }

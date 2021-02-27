@@ -18,8 +18,9 @@ namespace Game.Scripts.Behaviours
 
         [SerializeField] private PlayerController _playerController;
 
-        [SerializeField] private List<StageFinishTriggerer> _stages;
-        [SerializeField] private List<Basket> _baskets;
+        [SerializeField] private List<StageBehaviour> _stagesssssss;
+        //[SerializeField] private List<StageFinishTriggerer> _stages;
+        //[SerializeField] private List<Basket> _baskets;
 
         private int _currentStageIndex;
 
@@ -41,22 +42,22 @@ namespace Game.Scripts.Behaviours
 
         private void OnPlayerPassedStage(StageFinishTriggerer stage, Action callback)
         {
-            _baskets[_currentStageIndex].Result += OnBasketResultReturned;
-            _baskets[_currentStageIndex].Init();
+            _stagesssssss[_currentStageIndex].Basket.Result += OnBasketResultReturned;
+            _stagesssssss[_currentStageIndex].Basket.Init();
 
             _continuePlayer = callback;
         }
 
         private void OnBasketResultReturned(bool state)
         {
-            _baskets[_currentStageIndex].Result -= OnBasketResultReturned;
+            _stagesssssss[_currentStageIndex].Basket.Result -= OnBasketResultReturned;
 
-            _stages.Remove(_stages.First());
+            //_stagesssssss.Remove(_stagesssssss.First());
 
             if (state)
             {
                 Debug.Log("BasketTargetReached");
-                if (_stages.Count == 0)
+                if (_currentStageIndex >= _stagesssssss.Count - 1)
                 {
                     Debug.Log("LevelFinished");
                     OnPlayerFinished(true);

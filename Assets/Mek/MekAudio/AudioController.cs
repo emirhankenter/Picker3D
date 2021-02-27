@@ -24,8 +24,12 @@ namespace MekAudio
             audio.gameObject.name = clip.name;
             audio.transform.position = position;
             audio.spatialBlend = in3DSpace ? 1 : 0;
-            audio.minDistance = minDistance;
-            audio.maxDistance = maxDistance;
+            if (in3DSpace)
+            {
+                audio.rolloffMode = AudioRolloffMode.Linear;
+                audio.minDistance = minDistance;
+                audio.maxDistance = maxDistance;
+            }
             audio.volume = volume;
             audio.Play();
             _clips.Add(clip);

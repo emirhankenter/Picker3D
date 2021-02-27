@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using DG.Tweening;
 using Game.Scripts.Controllers;
 using Mek.Extensions;
@@ -17,6 +18,8 @@ namespace Game.Scripts.Behaviours.EventTriggerers
         [SerializeField] private int _targetCount;
         private int _current;
 
+        private List<ICollectible> _collectibles = new List<ICollectible>();
+
         private string _timeOutRoutineKey => $"timeOutRoutine{GetInstanceID()}";
 
         public void Init(float timer = 2f)
@@ -33,10 +36,13 @@ namespace Game.Scripts.Behaviours.EventTriggerers
             {
                 CoroutineController.StopCoroutine(_timeOutRoutineKey);
             }
+
+            _collectibles.Clear();
         }
 
         protected override void TriggerEnter(ICollectible collectible)
         {
+            _collectibles.Add(collectible);
             _current++;
         }
 
@@ -50,6 +56,12 @@ namespace Game.Scripts.Behaviours.EventTriggerers
             }
             Debug.Log($"Timeout with: {_current >= _targetCount}, {_current}/{_targetCount}");
             var canPass = _current >= _targetCount;
+
+            foreach (var collectible in _collectibles)
+            {
+                collectible.Collected();
+            }
+
             if(canPass) AllowPass();
             Result?.Invoke(canPass);
         }

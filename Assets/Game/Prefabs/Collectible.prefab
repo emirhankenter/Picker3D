@@ -123,3 +123,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b76988e5970ee944bdff4380eba307e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _popParticle: {fileID: 4957537587006277280, guid: 8a5a90351d236704d8469f4c04f14481,
+    type: 3}
+  _popSound: {fileID: 8300000, guid: 97e9feea8feaac54586cc00e25c7b4af, type: 3}
