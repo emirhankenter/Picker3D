@@ -31,6 +31,11 @@ namespace Game.Scripts.Behaviours
             _playerController.Init();
             _playerController.OnStageCompleted += OnPlayerPassedStage;
 
+            foreach (var stage in _stagesssssss)
+            {
+                stage.Init();
+            }
+
             Started?.Invoke();
         }
 
@@ -38,19 +43,24 @@ namespace Game.Scripts.Behaviours
         {
             _playerController.Dispose();
             _playerController.OnStageCompleted -= OnPlayerPassedStage;
+
+            foreach (var stage in _stagesssssss)
+            {
+                stage.Dispose();
+            }
         }
 
-        private void OnPlayerPassedStage(StageFinishTriggerer stage, Action callback)
+        private void OnPlayerPassedStage(Action callback)
         {
-            _stagesssssss[_currentStageIndex].Basket.Result += OnBasketResultReturned;
-            _stagesssssss[_currentStageIndex].Basket.Init();
+            _stagesssssss[_currentStageIndex].Result += OnBasketResultReturned;
+            _stagesssssss[_currentStageIndex].StartEvaluation();
 
             _continuePlayer = callback;
         }
 
         private void OnBasketResultReturned(bool state)
         {
-            _stagesssssss[_currentStageIndex].Basket.Result -= OnBasketResultReturned;
+            _stagesssssss[_currentStageIndex].Result -= OnBasketResultReturned;
 
             //_stagesssssss.Remove(_stagesssssss.First());
 

@@ -9,7 +9,7 @@ namespace Game.Scripts.Controllers
 {
     public interface IPicker
     {
-        void OnStageCleared(StageFinishTriggerer stage);
+        void OnStageCleared();
     }
     public interface ICollectible
     {
@@ -19,7 +19,7 @@ namespace Game.Scripts.Controllers
 
     public class PlayerController : MonoBehaviour, IPicker
     {
-        public event Action<StageFinishTriggerer, Action> OnStageCompleted;
+        public event Action<Action> OnStageCompleted;
 
         [SerializeField] private PickerStorage _storage;
 
@@ -117,14 +117,12 @@ namespace Game.Scripts.Controllers
             }
         }
 
-        public void OnStageCleared(StageFinishTriggerer stage)
+        public void OnStageCleared()
         {
-            Debug.Log($"Stage has cleared!");
-
             ToggleMovement(false);
             _storage.PushCollectibles();
 
-            OnStageCompleted?.Invoke(stage, () => ToggleMovement(true));
+            OnStageCompleted?.Invoke(() => ToggleMovement(true));
         }
     }
 }

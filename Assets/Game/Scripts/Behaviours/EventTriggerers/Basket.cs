@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
 using Game.Scripts.Controllers;
-using Mek.Extensions;
 using MekCoroutine;
+using TMPro;
 using UnityEngine;
 
 namespace Game.Scripts.Behaviours.EventTriggerers
@@ -13,6 +13,7 @@ namespace Game.Scripts.Behaviours.EventTriggerers
     {
         public event Action<bool> Result;
 
+        [SerializeField] private TextMeshPro _targetText;
         [SerializeField] private Transform _ground;
 
         [SerializeField] private int _targetCount;
@@ -22,7 +23,12 @@ namespace Game.Scripts.Behaviours.EventTriggerers
 
         private string _timeOutRoutineKey => $"timeOutRoutine{GetInstanceID()}";
 
-        public void Init(float timer = 2f)
+        public void Init()
+        {
+            _targetText.text = $"{_current}/{_targetCount}";
+        }
+
+        public void Activate(float timer = 2f)
         {
             if (!CoroutineController.IsCoroutineRunning(_timeOutRoutineKey))
             {
@@ -44,6 +50,8 @@ namespace Game.Scripts.Behaviours.EventTriggerers
         {
             _collectibles.Add(collectible);
             _current++;
+
+            _targetText.text = $"{_current}/{_targetCount}";
         }
 
         protected IEnumerator TimeOutRoutine(float timer)
@@ -54,7 +62,6 @@ namespace Game.Scripts.Behaviours.EventTriggerers
 
                 yield return new WaitForFixedUpdate();
             }
-            Debug.Log($"Timeout with: {_current >= _targetCount}, {_current}/{_targetCount}");
             var canPass = _current >= _targetCount;
 
             foreach (var collectible in _collectibles)
