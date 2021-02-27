@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using Game.Scripts.Behaviours;
 using Game.Scripts.Behaviours.EventTriggerers;
 using MekCoroutine;
 using UnityEngine;
@@ -13,11 +14,14 @@ namespace Game.Scripts.Controllers
     public interface ICollectible
     {
         void Collected();
+        void PushForward();
     }
 
     public class PlayerController : MonoBehaviour, IPicker
     {
         public event Action<StageFinishTriggerer, Action> OnStageCompleted;
+
+        [SerializeField] private PickerStorage _storage;
 
         private Vector2 _firstInput;
         private Vector2 _drag;
@@ -109,8 +113,6 @@ namespace Game.Scripts.Controllers
                 _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), _rb.transform.position.y,
                     _rb.transform.position.z);
 
-                Debug.Log($"XVelocity: {_rb.velocity.x}");
-
                 yield return new WaitForFixedUpdate();
             }
         }
@@ -120,6 +122,7 @@ namespace Game.Scripts.Controllers
             Debug.Log($"Stage has cleared!");
 
             ToggleMovement(false);
+            _storage.PushCollectibles();
 
             OnStageCompleted?.Invoke(stage, () => ToggleMovement(true));
         }
