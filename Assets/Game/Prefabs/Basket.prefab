@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5719240401946816438}
   - component: {fileID: 3558959760850393477}
   m_Layer: 9
-  m_Name: Cube (1)
+  m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 90818737350538261}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.5, y: -1.5, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 15}
+  m_LocalPosition: {x: 9.5, y: -2.5, z: 0}
+  m_LocalScale: {x: 1, y: 2, z: 15}
   m_Children: []
   m_Father: {fileID: 8356472127865976417}
   m_RootOrder: 3
@@ -120,8 +120,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2629246850038321221}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -3, z: -0.5}
-  m_LocalScale: {x: 18, y: 1, z: 14}
+  m_LocalPosition: {x: 0, y: -3, z: 0}
+  m_LocalScale: {x: 20, y: 1, z: 15}
   m_Children: []
   m_Father: {fileID: 8356472127865976417}
   m_RootOrder: 1
@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 6008093498476963326}
   - component: {fileID: 6216022584844272851}
   m_Layer: 9
-  m_Name: Cube
+  m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -213,8 +213,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4495531615060109535}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -9.5, y: -1.5, z: 0}
-  m_LocalScale: {x: 1, y: 4, z: 15}
+  m_LocalPosition: {x: -9.5, y: -2.5, z: 0}
+  m_LocalScale: {x: 1, y: 2, z: 15}
   m_Children: []
   m_Father: {fileID: 8356472127865976417}
   m_RootOrder: 2
@@ -342,7 +342,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _targetText: {fileID: 7239888216895152272}
-  _ground: {fileID: 5028421970882462908}
+  _ground: {fileID: 2299236218376545863}
   _targetCount: 3
 --- !u!1 &7103883153918954712
 GameObject:
@@ -532,7 +532,7 @@ GameObject:
   - component: {fileID: 8006010055970558321}
   - component: {fileID: 3547224243470316645}
   m_Layer: 9
-  m_Name: Cube (2)
+  m_Name: Border
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -546,8 +546,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8644957514996000877}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.5, z: 7}
-  m_LocalScale: {x: 18, y: 4, z: 1}
+  m_LocalPosition: {x: 0, y: -2.5, z: 7}
+  m_LocalScale: {x: 18, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 8356472127865976417}
   m_RootOrder: 4

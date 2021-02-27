@@ -14,7 +14,7 @@ namespace Game.Scripts.Behaviours.EventTriggerers
         public event Action<bool> Result;
 
         [SerializeField] private TextMeshPro _targetText;
-        [SerializeField] private Transform _ground;
+        [SerializeField] private MeshRenderer _ground;
 
         [SerializeField] private int _targetCount;
         private int _current;
@@ -75,7 +75,9 @@ namespace Game.Scripts.Behaviours.EventTriggerers
 
         private void AllowPass()
         {
-            _ground.DOLocalMove(new Vector3(_ground.localPosition.x, 0f, _ground.localPosition.z), 0.3f).SetEase(Ease.Linear);
+            _ground.transform.DOLocalMove(new Vector3(_ground.transform.localPosition.x, 0f, _ground.transform.localPosition.z), 0.3f).SetEase(Ease.OutBack);
+
+            _ground.material.DOColor(new Color(91f / 255f, 137 / 255f, 14f / 255f, 1), 0.3f).SetEase(Ease.Linear);
         }
     }
 }
