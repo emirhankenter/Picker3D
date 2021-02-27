@@ -143,7 +143,7 @@ namespace Game.Scripts.Controllers
             {
                 //_rb.AddForce(transform.forward * 1f);
 
-                _progress = Mathf.Lerp(_progress, Mathf.Clamp(_progress - _progressIncrementPerClick, 0f, 1f), Time.fixedDeltaTime);
+                _progress = Mathf.Lerp(_progress, Mathf.Clamp(_progress - _progressDecrementPerSecond, 0f, 1f), Time.fixedDeltaTime);
 
                 var velocity = Vector3.Lerp(_rb.velocity, new Vector3(0, 0f, _forwardSpeed), Time.fixedDeltaTime * 15f);
 
@@ -182,7 +182,7 @@ namespace Game.Scripts.Controllers
             _inTapTapZone = false;
             CoroutineController.ToggleRoutine(false, _tapRoutineKey, TapTapRoutine());
             VerticalProgressBar.Stop();
-            _rb.drag = 0.63f;
+            _rb.drag = 0.68f;
             //InputController.Toggle(false);
             GameController.Instance.DragHandler.ToggleInput(false);
             OnStageCompleted?.Invoke(() =>
