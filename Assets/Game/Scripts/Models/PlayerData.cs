@@ -11,7 +11,7 @@ namespace Game.Scripts.Models
 
             // MekPlayerData
             { PrefStats.IsStatSet, new BoolStat() },
-            { PrefStats.MusicOpened, new BoolStat() },
+            { PrefStats.SoundFXEnabled, new BoolStat(true) },
 
             // Game Specific PLayerData
             { PrefStats.PlayerLevel, new IntStat(0, Int32.MaxValue, 1) },

@@ -8,10 +8,10 @@
             set => PrefsManager.SetBool(PrefStats.IsStatSet, value);
         }
 
-        public static bool MusicOpened
+        public static bool SoundFXEnabled
         {
-            get => PrefsManager.GetBool(PrefStats.MusicOpened);
-            set => PrefsManager.SetBool(PrefStats.MusicOpened, value);
+            get => PrefsManager.GetBool(PrefStats.SoundFXEnabled);
+            set => PrefsManager.SetBool(PrefStats.SoundFXEnabled, value);
         }
     }
 }

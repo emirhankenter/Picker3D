@@ -1,7 +1,8 @@
 ﻿using DG.Tweening;
 using Game.Scripts.Controllers;
+using Game.Scripts.Models;
 using Mek.Extensions;
-using Mek.Utilities;
+using Mek.Models;
 using MekAudio;
 using MekCoroutine;
 using UnityEngine;
@@ -24,7 +25,11 @@ namespace Game.Scripts.Behaviours
 
         private void Pop()
         {
-            AudioController.Play(_popSound, volume:0.5f, position:transform.position, in3DSpace: true);
+            if (MekPlayerData.SoundFXEnabled)
+            {
+                AudioController.Play(_popSound, volume: 0.5f, position: transform.position, in3DSpace: true);
+            }
+
             var particle = _popParticle.Spawn(transform.position, Quaternion.identity);
 
             particle.Play(true);
