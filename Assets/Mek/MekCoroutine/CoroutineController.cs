@@ -70,6 +70,10 @@ namespace MekCoroutine
                 onComplete?.Invoke();
             }
         }
+        public static void DoAfterCondition(Func<bool> condition, Action onComplete)
+        {
+            CoroutineWorker.Instance.StartCoroutine(ConditionRoutine(condition, () => { onComplete?.Invoke(); }));
+        }
 
         private static void DoAfterTime(float time, Action onComplete)
         {
@@ -83,6 +87,13 @@ namespace MekCoroutine
                 timer -= Time.deltaTime;
                 yield return null;
             }
+
+            onComplete?.Invoke();
+        }
+
+        private static IEnumerator ConditionRoutine(Func<bool> condition, Action onComplete)
+        {
+            yield return new WaitUntil(condition);
 
             onComplete?.Invoke();
         }

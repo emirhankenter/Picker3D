@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections;
 using Game.Scripts.Behaviours;
-using Game.Scripts.Behaviours.EventTriggerers;
+using Game.Scripts.View.Elements;
 using MekCoroutine;
 using UnityEngine;
 
@@ -43,14 +43,13 @@ namespace Game.Scripts.Controllers
         private string _tapRoutineKey => $"tapRoutine{GetInstanceID()}";
 
         private bool _inTapTapZone;
+        private bool _isFirstInput = true;
 
         public void Init()
         {
             _rb = GetComponent<Rigidbody>();
-
+            _isFirstInput = true;
             RegisterEvents();
-
-            ToggleMovement(true);
         }
 
         public void Dispose()
@@ -83,6 +82,12 @@ namespace Game.Scripts.Controllers
         private void OnPressPerformed(Vector2 obj)
         {
             _firstInput = obj;
+
+            if (_isFirstInput)
+            {
+                _isFirstInput = false;
+                ToggleMovement(true);
+            }
 
             InputController.MovePerformed += OnMovePerformed;
 
@@ -137,6 +142,8 @@ namespace Game.Scripts.Controllers
 
                 _rb.velocity = velocity;
 
+                VerticalProgressBar.UpdateValue(_progress);
+
                 _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), _rb.transform.position.y,
                     _rb.transform.position.z);
                 Debug.Log($"Progress: {_progress}");
@@ -157,6 +164,7 @@ namespace Game.Scripts.Controllers
         {
             Debug.Log("TapTapAreaEntered");
             _inTapTapZone = true;
+            VerticalProgressBar.Activate();
             CoroutineController.ToggleRoutine(true, _tapRoutineKey, TapTapRoutine());
         }
 
@@ -164,6 +172,7 @@ namespace Game.Scripts.Controllers
         {
             _inTapTapZone = false;
             CoroutineController.ToggleRoutine(false, _tapRoutineKey, TapTapRoutine());
+            VerticalProgressBar.Stop();
             OnStageCompleted?.Invoke(() =>
             {});
             //ToggleMovement(false);
