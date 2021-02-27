@@ -12,6 +12,7 @@ namespace Assets.Game.Scripts.View.Panels
         [SerializeField] private CurrencyElement _coinElement;
         [SerializeField] private Button _claimButton;
         [SerializeField] private Text _gameOverText;
+        [SerializeField] private Text _claimButtonText;
 
         private GameOverViewParams _params;
 
@@ -38,7 +39,7 @@ namespace Assets.Game.Scripts.View.Panels
             _coinElement.Init(PlayerData.Instance.Coin);
             _claimButton.interactable = true;
             _gameOverText.text = _params.IsSuccess ? "Success" : "Fail";
-            Debug.Log($"IsSuccess: {_params.IsSuccess}, Earning: {_params.EarnAmount}");
+            _claimButtonText.text = _params.IsSuccess ? "Claim" : "Retry";
         }
 
         private void DisposeElements()

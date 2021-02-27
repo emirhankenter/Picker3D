@@ -13,7 +13,7 @@ namespace Game.Scripts.Controllers
 {
     public class GameController : GameBaseController
     {
-        public static event Action<Action> PlayConfetti;
+        //public static event Action<Action> PlayConfetti;
 
         //[SerializeField] private PlayerBehaviour _player;
         //[SerializeField] private ParticleSystem _confetti;
@@ -45,13 +45,11 @@ namespace Game.Scripts.Controllers
 
             Navigation.Panel.Change(ViewTypes.MainMenuPanel);
 
-            InputController.Toggle(true);
-        }
 
-        [Button]
-        private void StartGame()
-        {
-            Navigation.Panel.Change(ViewTypes.InGamePanel);
+            CoroutineController.DoAfterGivenTime(1f, () =>
+            {
+                InputController.Toggle(true);
+            });
         }
 
         private void DisposeLevel()
@@ -70,13 +68,13 @@ namespace Game.Scripts.Controllers
 
             var earnAmount = PlayerData.Instance.PlayerLevel * 50;
 
-            Navigation.Panel.Change(new GameOverViewParams(isSuccess, earnAmount, OnRewardClaimed));
+            Navigation.Panel.Change(new GameOverViewParams(isSuccess, earnAmount * (isSuccess ? 1 : 0), OnRewardClaimed));
             if (isSuccess)
             {
-                PlayConfetti?.Invoke(() =>
-                {
-                    Navigation.Panel.Change(new GameOverViewParams(true, earnAmount, OnRewardClaimed));
-                });
+                //PlayConfetti?.Invoke(() =>
+                //{
+                //    Navigation.Panel.Change(new GameOverViewParams(true, earnAmount, OnRewardClaimed));
+                //});
                 PlayerData.Instance.PlayerLevel++;
                 PlayerData.Instance.Coin += earnAmount;
             }
@@ -91,7 +89,6 @@ namespace Game.Scripts.Controllers
         {
             CoroutineController.DoAfterGivenTime(2f, () =>
             {
-                //ViewController.Instance.GameOverView.Close();
                 DisposeLevel();
             });
         }

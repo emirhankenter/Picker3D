@@ -23,6 +23,7 @@ namespace Game.Scripts.Controllers
         private string _mouseEventRoutineKey => $"MouseEventRoutine{GetInstanceID()}";
         public void Init()
         {
+            IsActive = false;
             MouseEventRoutine().StartCoroutine(_mouseEventRoutineKey);
         }
 
