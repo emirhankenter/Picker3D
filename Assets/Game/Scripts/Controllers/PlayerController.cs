@@ -10,6 +10,7 @@ namespace Game.Scripts.Controllers
     public interface IPicker
     {
         void OnStageCleared();
+        void OnPassedFinishLine();
     }
     public interface ICollectible
     {
@@ -24,27 +25,24 @@ namespace Game.Scripts.Controllers
 
         [SerializeField] private PickerStorage _storage;
 
-        private Vector2 _firstInput;
-        private Vector2 _drag;
-
         private const float _steerSpeed = 12f;
         private const float _maxXVelocity = 36f;
         private const float _forwardSpeed = 15f;
         private const float _bounds = 7.5f;
+        private const float _progressIncrementPerClick = 0.12f;
+        private const float _progressDecrementPerSecond = 0.3f;
 
+        private float _progress; //between 0 and 1
+        private const float _speedMultiplier = 12f;
         private Rigidbody _rb;
+        private Vector2 _firstInput;
+        private Vector2 _drag;
+        public float Speed => _rb.velocity.magnitude;
 
         private string _movementRoutineKey => $"movementRoutine{GetInstanceID()}";
+        private string _tapRoutineKey => $"tapRoutine{GetInstanceID()}";
 
-        //private void Awake()
-        //{
-        //    Init();
-        //}
-
-        //private void OnDestroy()
-        //{
-        //    Dispose();
-        //}
+        private bool _inTapTapZone;
 
         public void Init()
         {
@@ -60,6 +58,9 @@ namespace Game.Scripts.Controllers
             UnRegisterEvents();
 
             ToggleMovement(false);
+            _rb.velocity = Vector3.zero;
+
+            CoroutineController.ToggleRoutine(false, _tapRoutineKey, TapTapRoutine());
         }
 
         private void RegisterEvents()
@@ -76,7 +77,6 @@ namespace Game.Scripts.Controllers
 
         private void ToggleMovement(bool state)
         {
-            _rb.velocity = Vector3.zero;
             CoroutineController.ToggleRoutine(state, _movementRoutineKey, MovementRoutine());
         }
 
@@ -85,6 +85,11 @@ namespace Game.Scripts.Controllers
             _firstInput = obj;
 
             InputController.MovePerformed += OnMovePerformed;
+
+            if (_inTapTapZone || CoroutineController.IsCoroutineRunning(_tapRoutineKey))
+            {
+                _progress = Mathf.Clamp(_progress + _progressIncrementPerClick, 0f, 1f);
+            }
         }
 
         private void OnPressCanceled(Vector2 obj)
@@ -118,12 +123,51 @@ namespace Game.Scripts.Controllers
             }
         }
 
+        private IEnumerator TapTapRoutine()
+        {
+            while (true)
+            {
+                //_rb.AddForce(transform.forward * 1f);
+
+                _progress = Mathf.Lerp(_progress, Mathf.Clamp(_progress - _progressIncrementPerClick, 0f, 1f), Time.fixedDeltaTime);
+
+                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(0, 0.4f, _forwardSpeed), Time.fixedDeltaTime * 15f);
+
+                velocity.z += _progress * _speedMultiplier;
+
+                _rb.velocity = velocity;
+
+                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), _rb.transform.position.y,
+                    _rb.transform.position.z);
+                Debug.Log($"Progress: {_progress}");
+                yield return new WaitForFixedUpdate();
+            }
+        }
+
         public void OnStageCleared()
         {
             ToggleMovement(false);
+            _rb.velocity = Vector3.zero;
             _storage.PushCollectibles();
 
             OnStageCompleted?.Invoke(() => ToggleMovement(true));
+        }
+
+        public void OnEnteredFinalStage()
+        {
+            Debug.Log("TapTapAreaEntered");
+            _inTapTapZone = true;
+            CoroutineController.ToggleRoutine(true, _tapRoutineKey, TapTapRoutine());
+        }
+
+        public void OnPassedFinishLine()
+        {
+            _inTapTapZone = false;
+            CoroutineController.ToggleRoutine(false, _tapRoutineKey, TapTapRoutine());
+            OnStageCompleted?.Invoke(() =>
+            {});
+            //ToggleMovement(false);
+            Debug.Log("PassedFinishLine");
         }
     }
 }
