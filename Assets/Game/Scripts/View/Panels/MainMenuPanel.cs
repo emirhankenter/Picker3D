@@ -11,10 +11,9 @@ namespace Assets.Game.Scripts.View.Panels
 
         public override void Open(ViewParams viewParams)
         {
+            base.Open(viewParams);
             InputController.PressPerformed += OnPressPerformed;
             InitializeElements();
-
-            base.Open(viewParams);
         }
 
         public override void Close()

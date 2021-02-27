@@ -18,7 +18,7 @@ namespace Game.Scripts.Controllers
         public static Vector3 MousePosition{ get; private set; }
         public static bool IsActive { get; private set; }
 
-        private const float _updateIteration = 0.001f;
+        //private const float _updateIteration = 0.02f;
 
         private string _mouseEventRoutineKey => $"MouseEventRoutine{GetInstanceID()}";
         public void Init()
@@ -45,7 +45,11 @@ namespace Game.Scripts.Controllers
         {
             while (true)
             {
-                if (!IsActive) yield return new WaitForSeconds(_updateIteration);
+                if (!IsActive)
+                {
+                    yield return new WaitForSeconds(Time.deltaTime);
+                    yield return null;
+                }
 
                 MousePosition = Input.mousePosition;
 
@@ -65,7 +69,7 @@ namespace Game.Scripts.Controllers
                     _isPressing = false;
                     PressCanceled?.Invoke(MousePosition);
                 }
-                yield return new WaitForSeconds(_updateIteration);
+                yield return new WaitForSeconds(Time.deltaTime);
             }
         }
     }

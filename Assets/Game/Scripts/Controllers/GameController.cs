@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Game.Scripts.Behaviours;
 using Game.Scripts.Models;
+using Game.Utilities;
 using Mek.Controllers;
 using Mek.Localization;
 using MekCoroutine;
@@ -29,10 +30,9 @@ namespace Game.Scripts.Controllers
 
             LocalizationManager.Init();
             LocalizationManager.SetLanguage(Language.Turkish);
+            PrepareLevel();
 
             _inputController.Init();
-
-            PrepareLevel();
         }
 
 
@@ -45,8 +45,7 @@ namespace Game.Scripts.Controllers
 
             Navigation.Panel.Change(ViewTypes.MainMenuPanel);
 
-
-            CoroutineController.DoAfterGivenTime(1f, () =>
+            CrossfadeTransition.FadeOut(1f, () =>
             {
                 InputController.Toggle(true);
             });
@@ -89,7 +88,7 @@ namespace Game.Scripts.Controllers
         {
             CoroutineController.DoAfterGivenTime(2f, () =>
             {
-                DisposeLevel();
+                CrossfadeTransition.FadeIn(1f, DisposeLevel);
             });
         }
 
