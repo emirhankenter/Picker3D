@@ -54,6 +54,14 @@ namespace Game.Scripts.Behaviours.EventTriggerers
             _targetText.text = $"{_current}/{_targetCount}";
         }
 
+        protected override void TriggerExit(ICollectible collectible)
+        {
+            _collectibles.Remove(collectible);
+            _current--;
+
+            _targetText.text = $"{_current}/{_targetCount}";
+        }
+
         protected IEnumerator TimeOutRoutine(float timer)
         {
             while (timer >= 0f)

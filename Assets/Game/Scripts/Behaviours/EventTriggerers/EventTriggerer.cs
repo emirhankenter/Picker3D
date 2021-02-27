@@ -19,11 +19,21 @@ namespace Game.Scripts.Behaviours.EventTriggerers
                 TriggerEnter(collectible);
             }
         }
+        private void OnTriggerExit(Collider other)
+        {
+            if (other.TryGetComponent(out ICollectible collectible))
+            {
+                TriggerExit(collectible);
+            }
+        }
 
         protected virtual void TriggerEnter(IPicker picker)
         {
         }
         protected virtual void TriggerEnter(ICollectible collectible)
+        {
+        }
+        protected virtual void TriggerExit(ICollectible collectible)
         {
         }
 

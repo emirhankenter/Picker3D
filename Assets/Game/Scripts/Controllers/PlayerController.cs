@@ -110,7 +110,7 @@ namespace Game.Scripts.Controllers
         {
             while (true)
             { 
-                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.x * _steerSpeed, 0.4f, _forwardSpeed), Time.fixedDeltaTime* 15f);
+                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.x * _steerSpeed, 0.6f, _forwardSpeed), Time.fixedDeltaTime* 15f);
 
                 velocity.x = Mathf.Clamp(velocity.x, -_maxXVelocity, _maxXVelocity);
 
