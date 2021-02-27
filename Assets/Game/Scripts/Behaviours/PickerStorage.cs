@@ -38,5 +38,12 @@ namespace Game.Scripts.Behaviours
                 collectible.PushForward();
             }
         }
+        private void OnTriggerStay(Collider other)
+        {
+            if (other.TryGetComponent(out ICollectible collectible))
+            {
+                collectible.Bounce();
+            }
+        }
     }
 }

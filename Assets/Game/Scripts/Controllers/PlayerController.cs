@@ -15,6 +15,7 @@ namespace Game.Scripts.Controllers
     {
         void Collected();
         void PushForward();
+        void Bounce();
     }
 
     public class PlayerController : MonoBehaviour, IPicker

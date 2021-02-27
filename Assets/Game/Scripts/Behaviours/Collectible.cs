@@ -49,5 +49,10 @@ namespace Game.Scripts.Behaviours
         {
             _rb.AddForce(Vector3.forward * 5f);
         }
+
+        public void Bounce()
+        {
+            _rb.AddForce(Vector3.up * 0.1f + Vector3.back * 0.1f);
+        }
     }
 }
