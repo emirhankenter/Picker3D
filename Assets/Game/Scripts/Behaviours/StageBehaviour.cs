@@ -8,8 +8,8 @@ namespace Game.Scripts.Behaviours
     {
         public event Action<bool> Result;
 
-        [SerializeField] private StageFinishTriggerer _stageFinishTriggerer;
         [SerializeField] private Basket _basket;
+        [SerializeField] private GateBehaviour _gate;
 
         public void Init()
         {
@@ -31,7 +31,17 @@ namespace Game.Scripts.Behaviours
         private void OnBasketResult(bool result)
         {
             _basket.Result -= OnBasketResult;
-            Result?.Invoke(result);
+            if (result)
+            {
+                _gate.OpenSesame(() =>
+                {
+                    Result?.Invoke(true);
+                });
+            }
+            else
+            {
+                Result?.Invoke(false);
+            }
         }
     }
 }
