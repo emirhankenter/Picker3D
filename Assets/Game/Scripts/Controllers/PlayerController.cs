@@ -121,7 +121,7 @@ namespace Game.Scripts.Controllers
 
                 _rb.velocity = velocity;
 
-                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), _rb.transform.position.y,
+                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0.01f,
                     _rb.transform.position.z);
 
                 yield return new WaitForFixedUpdate();
