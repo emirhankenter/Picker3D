@@ -22,7 +22,7 @@ namespace Game.Scripts.Controllers
         private Vector2 _firstInput;
         private Vector2 _drag;
 
-        private const float _steerSpeed = 20f;
+        private const float _steerSpeed = 26f;
         private const float _forwardSpeed = 15f;
         private const float _bounds = 7.5f;
 
@@ -84,6 +84,7 @@ namespace Game.Scripts.Controllers
         private void OnPressCanceled(Vector2 obj)
         {
             _drag = Vector2.zero;
+            _rb.velocity = new Vector3(0, _rb.velocity.y, _rb.velocity.z);
             InputController.MovePerformed -= OnMovePerformed;
         }
 
@@ -98,15 +99,9 @@ namespace Game.Scripts.Controllers
         {
             while (true)
             {
-                //var pos = Vector3.Lerp(transform.position, transform.position + transform.forward * _forwardSpeed+ transform.right * _drag.x, Time.fixedDeltaTime);
-
-                //pos.x = Mathf.Clamp(pos.x, -_bounds, _bounds);
-                //_rb.MovePosition(pos);
-
-                _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.normalized.x * _steerSpeed, 0, _forwardSpeed), Time.fixedDeltaTime* 15f);
-                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0,
+                _rb.velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.normalized.x * _steerSpeed, 0.4f, _forwardSpeed), Time.fixedDeltaTime* 15f);
+                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), _rb.transform.position.y,
                     _rb.transform.position.z);
-                //transform.position = pos;
 
                 yield return new WaitForFixedUpdate();
             }

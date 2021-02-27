@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 6494630538874294987}
   _stages: []
+  _baskets: []
 --- !u!1001 &3990690672833140852
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66,7 +67,7 @@ PrefabInstance:
     - target: {fileID: 1614217565503032771, guid: 7c088416f8de3fd468a4b0053447aae9,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 1614217565503032771, guid: 7c088416f8de3fd468a4b0053447aae9,
         type: 3}

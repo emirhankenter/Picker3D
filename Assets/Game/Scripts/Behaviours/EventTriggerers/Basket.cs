@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using DG.Tweening;
 using Game.Scripts.Controllers;
 using Mek.Extensions;
 using MekCoroutine;
@@ -9,7 +10,9 @@ namespace Game.Scripts.Behaviours.EventTriggerers
 {
     public class Basket : EventTriggerer
     {
-        public event Action<bool> Result; 
+        public event Action<bool> Result;
+
+        [SerializeField] private Transform _ground;
 
         [SerializeField] private int _targetCount;
         private int _current;
@@ -46,7 +49,14 @@ namespace Game.Scripts.Behaviours.EventTriggerers
                 yield return new WaitForFixedUpdate();
             }
             Debug.Log($"Timeout with: {_current >= _targetCount}, {_current}/{_targetCount}");
-            Result?.Invoke(_current >= _targetCount);
+            var canPass = _current >= _targetCount;
+            if(canPass) AllowPass();
+            Result?.Invoke(canPass);
+        }
+
+        private void AllowPass()
+        {
+            _ground.DOLocalMove(new Vector3(_ground.localPosition.x, 0f, _ground.localPosition.z), 0.3f).SetEase(Ease.Linear);
         }
     }
 }
