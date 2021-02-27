@@ -12,9 +12,18 @@ namespace Game.Scripts.Behaviours.EventTriggerers
             {
                 TriggerEnter(picker);
             }
+
+
+            if (other.TryGetComponent(out ICollectible collectible))
+            {
+                TriggerEnter(collectible);
+            }
         }
 
         protected virtual void TriggerEnter(IPicker picker)
+        {
+        }
+        protected virtual void TriggerEnter(ICollectible collectible)
         {
         }
 

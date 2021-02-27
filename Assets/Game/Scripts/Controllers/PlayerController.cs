@@ -10,6 +10,10 @@ namespace Game.Scripts.Controllers
     {
         void OnStageCleared(StageFinishTriggerer stage);
     }
+    public interface ICollectible
+    {
+        void Collected();
+    }
 
     public class PlayerController : MonoBehaviour, IPicker
     {
