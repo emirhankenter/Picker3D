@@ -115,7 +115,7 @@ namespace Game.Scripts.Controllers
         {
             while (true)
             { 
-                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.x * _steerSpeed, 0.6f, _forwardSpeed), Time.fixedDeltaTime* 15f);
+                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.x * _steerSpeed, 0.63f, _forwardSpeed), Time.fixedDeltaTime* 15f);
 
                 velocity.x = Mathf.Clamp(velocity.x, -_maxXVelocity, _maxXVelocity);
 
@@ -136,7 +136,7 @@ namespace Game.Scripts.Controllers
 
                 _progress = Mathf.Lerp(_progress, Mathf.Clamp(_progress - _progressIncrementPerClick, 0f, 1f), Time.fixedDeltaTime);
 
-                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(0, 0.4f, _forwardSpeed), Time.fixedDeltaTime * 15f);
+                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(0, 0.63f, _forwardSpeed), Time.fixedDeltaTime * 15f);
 
                 velocity.z += _progress * _speedMultiplier;
 
@@ -144,7 +144,7 @@ namespace Game.Scripts.Controllers
 
                 VerticalProgressBar.UpdateValue(_progress);
 
-                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), _rb.transform.position.y,
+                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0.01f,
                     _rb.transform.position.z);
                 Debug.Log($"Progress: {_progress}");
                 yield return new WaitForFixedUpdate();
