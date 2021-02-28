@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using DG.Tweening;
+using Mek.Models;
 using MekAudio;
 using UnityEngine;
 
@@ -14,7 +15,7 @@ namespace MekNavigation
         {
             transform.localScale = Vector3.zero;
             base.Open(viewParams);
-            if (_openingSound)
+            if (_openingSound && MekPlayerData.SoundFXEnabled)
             {
                 AudioController.Play(_openingSound);
             }
@@ -23,7 +24,7 @@ namespace MekNavigation
 
         public override void Close()
         {
-            if (_closingSound)
+            if (_closingSound && MekPlayerData.SoundFXEnabled)
             {
                 AudioController.Play(_closingSound);
             }

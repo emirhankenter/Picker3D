@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using Game.Scripts.Models;
 using Game.Scripts.View.Elements;
 using Mek.Localization;
+using Mek.Models;
 using MekNavigation;
 using UnityEngine;
+using UnityEngine.UI;
+using Navigation = MekNavigation.Navigation;
 
 namespace Game.Scripts.View
 {
@@ -12,6 +15,8 @@ namespace Game.Scripts.View
     {
         [SerializeField] private RectTransform _languagesParent;
         [SerializeField] private LanguageSelectionButton _languageSelectionButtonPrefab;
+        [SerializeField] private Image _volumeOn;
+        [SerializeField] private Image _volumeOff;
 
         private List<LanguageSelectionButton> _selectionButtons = new List<LanguageSelectionButton>();
 
@@ -53,6 +58,7 @@ namespace Game.Scripts.View
                     }
                 }
             }
+            UpdateVolumeImages();
         }
 
         private void OnDestroy()
@@ -77,6 +83,19 @@ namespace Game.Scripts.View
         public void OnClickedCloseButton()
         {
             Navigation.Popup.CloseActiveContent();
+        }
+
+        public void ToggleVolume()
+        {
+            MekPlayerData.SoundFXEnabled = !MekPlayerData.SoundFXEnabled;
+
+            UpdateVolumeImages();
+        }
+
+        private void UpdateVolumeImages()
+        {
+            _volumeOn.enabled = MekPlayerData.SoundFXEnabled;
+            _volumeOff.enabled = !MekPlayerData.SoundFXEnabled;
         }
     }
 }
