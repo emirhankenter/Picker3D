@@ -1,5 +1,6 @@
 ﻿using Game.Scripts.Models;
 using Game.Scripts.View.Elements;
+using Mek.Localization;
 using MekNavigation;
 using Sirenix.OdinInspector;
 using UnityEngine;

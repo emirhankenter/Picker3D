@@ -14,7 +14,6 @@ namespace Game.Scripts.View
     public class InGamePanel : Panel
     {
         [SerializeField] private CurrencyElement _coinElement;
-        [SerializeField] private Text _localizedText;
         [SerializeField] private StageIndicator _stageIndicator;
 
         public override void Open(ViewParams viewParams)
@@ -22,11 +21,6 @@ namespace Game.Scripts.View
             base.Open(viewParams);
 
             InitializeElements();
-
-            if (LocalizationManager.TryGetTranslationWithParameter("TIME LEFT", "time", "40", out string loc))
-            {
-                _localizedText.text = loc;
-            }
         }
 
         public override void Close()
@@ -40,8 +34,6 @@ namespace Game.Scripts.View
         {
             _coinElement.Init(PlayerData.Instance.Coin);
             _stageIndicator.Init();
-
-            _localizedText.gameObject.SetActive(false);
         }
 
         private void DisposeElements()
