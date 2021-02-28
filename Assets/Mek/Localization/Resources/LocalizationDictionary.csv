@@ -1,9 +1,12 @@
-,Turkish,English,Italian
-HI,SELAM,HI,CIAO
-PLAY,OYNA,PLAY,GIOCARE
-TRY AGAIN,YENIDEN OYNA,TRY AGAIN,RIPROVA
-CLAIM,KAZAN,CLAIM,RICHIESTA
-VICTORY,ZAFER,VICTORY,VITTORIA
-DEFEAT,BOZGUN,DEFEAT,LA SCONFITTA
-LEVEL,SEVIYE,LEVEL,LIVELLO
-TIME LEFT,KALAN ZAMAN: {time},TIME LEFT: {time},TEMPO RIMASTO: {time}
+,Turkish,English
+Hi,Selam,Hi
+Play,Oyna,Play
+Try Again,Yeniden Oyna,Try Again
+Claim,Kazan,Claim
+Victory,Zafer,Victory
+Defeat,Bozgun,Defeat
+Level,Seviye,Level
+Tap,Baslamak icin ekrana dokun,Tap to Start
+Reward,Ödül,Reward
+LevelCompleted,Seviye Tamamlandi,Level Completed
+LevelFail,Seviye Basarisiz,Level Failed

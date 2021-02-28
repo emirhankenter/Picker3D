@@ -14,52 +14,62 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Dictionary:
     m_keys:
-    - DEFEAT
-    - TIME LEFT
-    - HI
-    - LEVEL
-    - VICTORY
-    - CLAIM
-    - PLAY
-    - TRY AGAIN
+    - Hi
+    - Play
+    - Try Again
+    - Claim
+    - Victory
+    - Defeat
+    - Level
+    - Tap
+    - Reward
+    - LevelCompleted
+    - LevelFail
+    - 
     m_values:
-    - m_keys: 000000000100000002000000
+    - m_keys: 0000000001000000
       m_values:
-      - BOZGUN
-      - DEFEAT
-      - "LA SCONFITTA\r"
-    - m_keys: 000000000100000002000000
+      - Selam
+      - Hi
+    - m_keys: 0000000001000000
       m_values:
-      - 'KALAN ZAMAN: {time}'
-      - 'TIME LEFT: {time}'
-      - 'TEMPO RIMASTO: {time}'
-    - m_keys: 000000000100000002000000
+      - Oyna
+      - Play
+    - m_keys: 0000000001000000
       m_values:
-      - SELAM
-      - HI
-      - "CIAO\r"
-    - m_keys: 000000000100000002000000
+      - Yeniden Oyna
+      - Try Again
+    - m_keys: 0000000001000000
       m_values:
-      - SEVIYE
-      - LEVEL
-      - "LIVELLO\r"
-    - m_keys: 000000000100000002000000
+      - Kazan
+      - Claim
+    - m_keys: 0000000001000000
       m_values:
-      - ZAFER
-      - VICTORY
-      - "VITTORIA\r"
-    - m_keys: 000000000100000002000000
+      - Zafer
+      - Victory
+    - m_keys: 0000000001000000
       m_values:
-      - KAZAN
-      - CLAIM
-      - "RICHIESTA\r"
-    - m_keys: 000000000100000002000000
+      - Bozgun
+      - Defeat
+    - m_keys: 0000000001000000
       m_values:
-      - OYNA
-      - PLAY
-      - "GIOCARE\r"
-    - m_keys: 000000000100000002000000
+      - Seviye
+      - Level
+    - m_keys: 0000000001000000
       m_values:
-      - YENIDEN OYNA
-      - TRY AGAIN
-      - "RIPROVA\r"
+      - Baslamak icin ekrana dokun
+      - Tap to Start
+    - m_keys: 0000000001000000
+      m_values:
+      - "\xD6d\xFCl"
+      - Reward
+    - m_keys: 0000000001000000
+      m_values:
+      - Seviye Tamamlandi
+      - Level Completed
+    - m_keys: 0000000001000000
+      m_values:
+      - Seviye Basarisiz
+      - Level Failed
+    - m_keys: 
+      m_values: []

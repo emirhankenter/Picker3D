@@ -42,8 +42,26 @@ namespace Assets.Game.Scripts.View.Panels
         {
             _coinElement.Init(PlayerData.Instance.Coin);
             _claimButton.interactable = true;
-            _gameOverText.text = _params.IsSuccess ? "Success" : "Fail";
-            _claimButtonText.text = _params.IsSuccess ? "Claim" : "Retry";
+
+            if (LocalizationManager.TryGetTranslation(_params.IsSuccess ? "LevelCompleted" : "LevelFail",
+                out var levelFinishText))
+            {
+                _gameOverText.text = levelFinishText;
+            }
+            else
+            {
+                _gameOverText.text = _params.IsSuccess ? "LevelCompleted" : "LevelFailed";
+            }
+
+            if (LocalizationManager.TryGetTranslation(_params.IsSuccess ? "Claim" : "Try Again",
+                out var buttonText))
+            {
+                _claimButtonText.text = buttonText;
+            }
+            else
+            {
+                _claimButtonText.text = _params.IsSuccess ? "Claim" : "Retry";
+            }
             _rewardContainer.gameObject.SetActive(_params.IsSuccess);
             _rewardAmountText.text = _params.EarnAmount.ToString();
         }
