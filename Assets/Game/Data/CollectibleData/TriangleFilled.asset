@@ -1,0 +1,34 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb443cb703e8014f8d3677ea56a0d71, type: 3}
+  m_Name: TriangleFilled
+  m_EditorClassIdentifier: 
+  Positions:
+  - {x: -2.12, y: 0, z: -0.83}
+  - {x: -1.5799999, y: 0, z: -0.109999985}
+  - {x: -1.0899999, y: 0, z: 0.63}
+  - {x: -0.5799999, y: 0, z: 1.3}
+  - {x: -0.039999902, y: 0, z: 1.9599999}
+  - {x: 0.5799999, y: 0, z: 1.3}
+  - {x: 1.09, y: 0, z: 0.63}
+  - {x: 1.58, y: 0, z: -0.109999985}
+  - {x: 2.12, y: 0, z: -0.83}
+  - {x: 1.3, y: 0, z: -0.83}
+  - {x: 0.46, y: 0, z: -0.83}
+  - {x: -0.42, y: 0, z: -0.83}
+  - {x: -1.21, y: 0, z: -0.83}
+  - {x: -0.77, y: 0, z: -0.17}
+  - {x: -0.31, y: 0, z: 0.49}
+  - {x: 0.05, y: 0, z: 1.07}
+  - {x: 0.45, y: 0, z: 0.33}
+  - {x: 0.81, y: 0, z: -0.27}
+  - {x: 0.05, y: 0, z: -0.23}

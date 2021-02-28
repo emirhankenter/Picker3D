@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb443cb703e8014f8d3677ea56a0d71, type: 3}
+  m_Name: Smiley-3
+  m_EditorClassIdentifier: 
+  Positions:
+  - {x: 1.4799999, y: 0, z: 1.92}
+  - {x: 0.8599999, y: 0, z: 1.4}
+  - {x: 1.42, y: 0, z: 0.8399999}
+  - {x: 2.08, y: 0, z: 1.3}
+  - {x: -1.7199999, y: 0, z: 1.8399999}
+  - {x: -2.3399997, y: 0, z: 1.3199999}
+  - {x: -1.7799999, y: 0, z: 0.7599999}
+  - {x: -1.12, y: 0, z: 1.22}
+  - {x: -2.8799999, y: 0, z: -1.28}
+  - {x: -2.32, y: 0, z: -2}
+  - {x: -1.56, y: 0, z: -2.5}
+  - {x: -0.7799999, y: 0, z: -2.94}
+  - {x: 0.020000093, y: 0, z: -3.12}
+  - {x: 0.7799999, y: 0, z: -2.94}
+  - {x: 1.56, y: 0, z: -2.5}
+  - {x: 2.32, y: 0, z: -2}
+  - {x: 2.88, y: 0, z: -1.28}
+  - {x: 1.56, y: 0, z: -1.28}
+  - {x: 0.8, y: 0, z: -1.28}
+  - {x: 0.06, y: 0, z: -1.28}
+  - {x: -0.64, y: 0, z: -1.28}
+  - {x: -1.42, y: 0, z: -1.28}
+  - {x: -2.12, y: 0, z: -1.28}
+  - {x: 2.2, y: 0, z: -1.28}
+  - {x: 3.08, y: 0, z: 0.66}
+  - {x: 3.76, y: 0, z: 0.18}
+  - {x: -3.76, y: 0, z: 0.18}
+  - {x: -3.08, y: 0, z: 0.66}

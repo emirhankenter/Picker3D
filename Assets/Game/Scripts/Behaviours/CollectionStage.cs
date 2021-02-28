@@ -5,6 +5,7 @@ namespace Game.Scripts.Behaviours
 {
     public class CollectionStage : StageBehaviour
     {
+        [SerializeField] private int _target = 3;
         [SerializeField] private Basket _basket;
         [SerializeField] private GateBehaviour _gate;
 
@@ -13,7 +14,7 @@ namespace Game.Scripts.Behaviours
             base.Init();
             _basket.Result += OnBasketResult;
 
-            _basket.Init();
+            _basket.Init(_target);
         }
 
         public override void StartEvaluation()

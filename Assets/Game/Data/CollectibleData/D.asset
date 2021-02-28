@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2cb443cb703e8014f8d3677ea56a0d71, type: 3}
+  m_Name: D
+  m_EditorClassIdentifier: 
+  Positions:
+  - {x: 0.27000022, y: 0.5, z: -1.7399998}
+  - {x: 0.16000009, y: 0.5, z: 2.9100008}
+  - {x: -0.8399999, y: 0.5, z: -0.09000015}
+  - {x: -0.8399999, y: 0.5, z: -1.1300011}
+  - {x: -0.8399999, y: 0.5, z: 2.0699997}
+  - {x: 0.9600003, y: 0.5, z: -1.0800009}
+  - {x: -0.8399999, y: 0.5, z: -2.0699997}
+  - {x: 1.1600001, y: 0.5, z: 0.90999985}
+  - {x: -0.8399999, y: 0.5, z: 3.21}
+  - {x: -0.8399999, y: 0.5, z: 0.9000015}
+  - {x: 0.85000014, y: 0.5, z: 2.0900002}
+  - {x: 1.26, y: 0.5, z: -0.23}

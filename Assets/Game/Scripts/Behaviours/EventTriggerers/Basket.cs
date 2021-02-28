@@ -23,8 +23,9 @@ namespace Game.Scripts.Behaviours.EventTriggerers
 
         private string _timeOutRoutineKey => $"timeOutRoutine{GetInstanceID()}";
 
-        public void Init()
+        public void Init(int targetCount)
         {
+            _targetCount = targetCount;
             _targetText.text = $"{_current}/{_targetCount}";
         }
 
