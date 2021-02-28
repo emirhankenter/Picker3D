@@ -7,6 +7,7 @@ namespace Game.Scripts.Behaviours.EventTriggerers
         protected override void TriggerEnter(IPicker picker)
         {
             picker.OnPassedFinishLine();
+            gameObject.SetActive(false);
         }
     }
 }

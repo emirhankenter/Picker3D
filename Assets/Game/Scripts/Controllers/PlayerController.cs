@@ -124,13 +124,13 @@ namespace Game.Scripts.Controllers
         {
             while (true)
             { 
-                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.x * _steerSpeed, 0f, _forwardSpeed), Time.fixedDeltaTime* 15f);
+                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(_drag.x * _steerSpeed, 0.05f, _forwardSpeed), Time.fixedDeltaTime* 15f);
 
                 velocity.x = Mathf.Clamp(velocity.x, -_maxXVelocity, _maxXVelocity);
 
                 _rb.velocity = velocity;
 
-                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0f,
+                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0.05f,
                     _rb.transform.position.z);
 
                 yield return new WaitForFixedUpdate();
@@ -143,9 +143,9 @@ namespace Game.Scripts.Controllers
             {
                 //_rb.AddForce(transform.forward * 1f);
 
-                _progress = Mathf.Lerp(_progress, Mathf.Clamp(_progress - _progressDecrementPerSecond, 0f, 1f), Time.fixedDeltaTime);
+                _progress = Mathf.Lerp(_progress, Mathf.Clamp(_progress - _progressDecrementPerSecond, 0.05f, 1f), Time.fixedDeltaTime);
 
-                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(0, 0f, _forwardSpeed), Time.fixedDeltaTime * 15f);
+                var velocity = Vector3.Lerp(_rb.velocity, new Vector3(0, 0.05f, _forwardSpeed), Time.fixedDeltaTime * 15f);
 
                 velocity.z += _progress * _speedMultiplier;
 
@@ -153,7 +153,7 @@ namespace Game.Scripts.Controllers
 
                 VerticalProgressBar.UpdateValue(_progress);
 
-                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0f,
+                _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0.05f,
                     _rb.transform.position.z);
                 yield return new WaitForFixedUpdate();
             }

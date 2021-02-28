@@ -13,6 +13,7 @@ namespace Game.Scripts.Behaviours.EventTriggerers
         protected override void TriggerEnter(IPicker picker)
         {
             picker.OnStageCleared();
+            gameObject.SetActive(false);
         }
 
         private void OnDrawGizmosSelected()
