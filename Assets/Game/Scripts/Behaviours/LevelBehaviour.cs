@@ -11,6 +11,7 @@ namespace Game.Scripts.Behaviours
 {
     public class LevelBehaviour : MonoBehaviour
     {
+        public static event Action StageCompleted;
         public static event Action Started;
         public Action<bool> Completed;
 
@@ -23,8 +24,10 @@ namespace Game.Scripts.Behaviours
         //[SerializeField] private List<Basket> _baskets;
 
         public PlayerController Player => _playerController;
+        public int StageCount => _stagesssssss.Count;
 
         private int _currentStageIndex;
+        public int CurrentStageIndex => _currentStageIndex;
 
         public void Initialize()
         {
@@ -63,6 +66,7 @@ namespace Game.Scripts.Behaviours
         private void OnStageResultReturned(bool state)
         {
             _stagesssssss[_currentStageIndex].Result -= OnStageResultReturned;
+            StageCompleted?.Invoke();
 
             //_stagesssssss.Remove(_stagesssssss.First());
 

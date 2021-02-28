@@ -155,7 +155,6 @@ namespace Game.Scripts.Controllers
 
                 _rb.transform.position = new Vector3(Mathf.Clamp(_rb.transform.position.x, -_bounds, _bounds), 0f,
                     _rb.transform.position.z);
-                Debug.Log($"Progress: {_progress}");
                 yield return new WaitForFixedUpdate();
             }
         }

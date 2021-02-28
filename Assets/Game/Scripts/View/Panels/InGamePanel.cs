@@ -15,6 +15,7 @@ namespace Game.Scripts.View
     {
         [SerializeField] private CurrencyElement _coinElement;
         [SerializeField] private Text _localizedText;
+        [SerializeField] private StageIndicator _stageIndicator;
 
         public override void Open(ViewParams viewParams)
         {
@@ -38,21 +39,14 @@ namespace Game.Scripts.View
         private void InitializeElements()
         {
             _coinElement.Init(PlayerData.Instance.Coin);
+            _stageIndicator.Init();
 
             _localizedText.gameObject.SetActive(false);
         }
 
         private void DisposeElements()
         {
-
+            _stageIndicator.Dispose();
         }
-
-        [Button]
-        public void EarnMoney(float amount = 10)
-        {
-            PlayerData.Instance.Coin += amount;
-            _coinElement.UpdateValue(PlayerData.Instance.Coin);
-        }
-
     }
 }
