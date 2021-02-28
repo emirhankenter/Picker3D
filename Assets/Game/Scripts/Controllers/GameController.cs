@@ -52,12 +52,16 @@ namespace Game.Scripts.Controllers
                 CurrentLevel = Instantiate(_levels[(PlayerData.Instance.PlayerLevel - 1) % _levels.Count]);
             }
             CurrentLevel.Initialize(_player);
-            _player.Init();
             PrepareNextLevel();
 
             CurrentLevel.Completed += OnLevelCompleted;
 
             Navigation.Panel.Change(ViewTypes.MainMenuPanel);
+
+            CoroutineController.DoAfterFixedUpdate(() =>
+            {
+                _player.Init();
+            });
 
             //CrossfadeTransition.FadeOut(1f, () =>
             //{
