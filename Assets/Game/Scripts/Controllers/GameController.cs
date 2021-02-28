@@ -6,6 +6,7 @@ using Game.Scripts.Models;
 using Game.Scripts.Models.ViewParams;
 using Game.Scripts.Utilities;
 using Mek.Controllers;
+using Mek.Extensions;
 using Mek.Localization;
 using MekCoroutine;
 using MekNavigation;
@@ -49,7 +50,10 @@ namespace Game.Scripts.Controllers
             }
             else
             {
-                CurrentLevel = Instantiate(_levels[(PlayerData.Instance.PlayerLevel - 1) % _levels.Count]);
+                var level = PlayerData.Instance.PlayerLevel > _levels.Count
+                    ? _levels.RandomElement()
+                    : _levels[(PlayerData.Instance.PlayerLevel - 1) % _levels.Count];
+                CurrentLevel = Instantiate(level);
             }
             CurrentLevel.Initialize(_player);
             PrepareNextLevel();
@@ -144,7 +148,16 @@ namespace Game.Scripts.Controllers
 
         private void PrepareNextLevel()
         {
-            NextLevel = Instantiate(_levels[(PlayerData.Instance.PlayerLevel) % _levels.Count]);
+            var level = PlayerData.Instance.PlayerLevel + 1 > _levels.Count
+                ? _levels.RandomElement()
+                : _levels[(PlayerData.Instance.PlayerLevel) % _levels.Count];
+
+            while (level.name == CurrentLevel.name.Replace("(Clone)", ""))
+            {
+                level = _levels.RandomElement();
+            }
+
+            NextLevel = Instantiate(level);
             NextLevel.transform.position = new Vector3(0, 0, (CurrentLevel.StageCount) * 100f + 60f); //world space length of the level is 100 per stage and 60 for final area
         }
 
