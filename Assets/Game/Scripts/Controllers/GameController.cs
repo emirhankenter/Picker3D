@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using DG.Tweening;
 using Game.Scripts.Behaviours;
 using Game.Scripts.Models;
@@ -53,6 +54,11 @@ namespace Game.Scripts.Controllers
                 var level = PlayerData.Instance.PlayerLevel > _levels.Count
                     ? _levels.RandomElement()
                     : _levels[(PlayerData.Instance.PlayerLevel - 1) % _levels.Count];
+
+                while (int.Parse(level.name.Replace("Level_", "")) <= 2)
+                {
+                    level = _levels.RandomElement();
+                }
                 CurrentLevel = Instantiate(level);
             }
             CurrentLevel.Initialize(_player);
@@ -152,7 +158,7 @@ namespace Game.Scripts.Controllers
                 ? _levels.RandomElement()
                 : _levels[(PlayerData.Instance.PlayerLevel) % _levels.Count];
 
-            while (level.name == CurrentLevel.name.Replace("(Clone)", ""))
+            while (level.name == CurrentLevel.name.Replace("(Clone)", "") || int.Parse(level.name.Replace("Level_", "")) <= 2)
             {
                 level = _levels.RandomElement();
             }
