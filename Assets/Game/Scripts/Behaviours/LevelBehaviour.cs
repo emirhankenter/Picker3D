@@ -17,7 +17,7 @@ namespace Game.Scripts.Behaviours
 
         private event Action _continuePlayer;
 
-        [SerializeField] private PlayerController _playerController;
+        private PlayerController _playerController;
 
         [SerializeField] private List<StageBehaviour> _stagesssssss;
         //[SerializeField] private List<StageFinishTriggerer> _stages;
@@ -29,11 +29,12 @@ namespace Game.Scripts.Behaviours
         private int _currentStageIndex;
         public int CurrentStageIndex => _currentStageIndex;
 
-        public void Initialize()
+        public void Initialize(PlayerController player)
         {
             _currentStageIndex = 0;
+            _playerController = player;
 
-            _playerController.Init();
+            //_playerController.Init();
             _playerController.OnStageCompleted += OnPlayerPassedStage;
 
             foreach (var stage in _stagesssssss)
@@ -46,7 +47,7 @@ namespace Game.Scripts.Behaviours
 
         public void Dispose()
         {
-            _playerController.Dispose();
+            //_playerController.Dispose();
             _playerController.OnStageCompleted -= OnPlayerPassedStage;
 
             foreach (var stage in _stagesssssss)

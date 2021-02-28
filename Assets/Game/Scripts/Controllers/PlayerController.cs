@@ -48,9 +48,11 @@ namespace Game.Scripts.Controllers
 
         public void Init()
         {
+            _progress = 0f;
+            _isFirstInput = true;
+            _firstInput = Vector2.zero;
             _rb = GetComponent<Rigidbody>();
             RegisterEvents();
-            _isFirstInput = true;
         }
 
         public void Dispose()
@@ -76,6 +78,7 @@ namespace Game.Scripts.Controllers
         {
             DragHandler.PointerDown -= OnPressPerformed;
             DragHandler.PointerUp -= OnPressCanceled;
+            DragHandler.MovePerformed -= OnMovePerformed;
 
             //InputController.PressPerformed -= OnPressPerformed;
             //InputController.PressCanceled -= OnPressCanceled;
@@ -108,6 +111,7 @@ namespace Game.Scripts.Controllers
         private void OnPressCanceled(Vector2 obj)
         {
             _drag = Vector2.zero;
+            _firstInput = Vector2.zero;
             _rb.velocity = new Vector3(0, _rb.velocity.y, _rb.velocity.z);
             DragHandler.MovePerformed -= OnMovePerformed;
             //InputController.MovePerformed -= OnMovePerformed;

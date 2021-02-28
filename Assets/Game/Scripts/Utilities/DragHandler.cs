@@ -27,11 +27,10 @@ namespace Game.Scripts.Utilities
         public Vector2 MousePosition { get; private set; }
         private string _mouseEventRoutineKey => $"dragMouseEventRoutine{GetInstanceID()}";
 
-        private PointerEventData _pointerEventData;
-
         public void ToggleInput(bool state)
         {
             Image.enabled = state;
+            CoroutineController.ToggleRoutine(state, _mouseEventRoutineKey, MouseEventRoutine());
         }
 
         public void OnPointerDown(PointerEventData eventData)
@@ -39,12 +38,6 @@ namespace Game.Scripts.Utilities
             if(!IsActive) return;
             IsPressing = true;
             PointerDown?.Invoke(eventData.position);
-            _pointerEventData = eventData;
-
-            if (!CoroutineController.IsCoroutineRunning(_mouseEventRoutineKey))
-            {
-                MouseEventRoutine().StartCoroutine(_mouseEventRoutineKey);
-            }
         }
 
         public void OnPointerUp(PointerEventData eventData)
@@ -52,10 +45,6 @@ namespace Game.Scripts.Utilities
             if (!IsActive) return;
             IsPressing = false;
             PointerUp?.Invoke(eventData.position);
-            if (CoroutineController.IsCoroutineRunning(_mouseEventRoutineKey))
-            {
-                CoroutineController.StopCoroutine(_mouseEventRoutineKey);
-            }
         }
 
         public void OnBeginDrag(PointerEventData eventData)
