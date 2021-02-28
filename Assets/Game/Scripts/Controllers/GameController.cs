@@ -50,7 +50,7 @@ namespace Game.Scripts.Controllers
 
             CrossfadeTransition.FadeOut(1f, () =>
             {
-                _dragHandler.ToggleInput(true);
+                DragHandler.ToggleInput(true);
                 //InputController.Toggle(true);
             });
         }
@@ -70,6 +70,8 @@ namespace Game.Scripts.Controllers
             CurrentLevel.Completed -= OnLevelCompleted;
 
             var earnAmount = PlayerData.Instance.PlayerLevel * 50;
+
+            DragHandler.ToggleInput(false);
 
             Navigation.Panel.Change(new GameOverViewParams(isSuccess, earnAmount * (isSuccess ? 1 : 0), OnRewardClaimed));
             if (isSuccess)
