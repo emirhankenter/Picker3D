@@ -10,7 +10,10 @@ namespace Assets.Game.Scripts.View.Panels
     public class GameOverPanel : Panel
     {
         [SerializeField] private CurrencyElement _coinElement;
+        [SerializeField] private MovingCoinAnimator _coinAnimatorElement;
         [SerializeField] private Button _claimButton;
+        [SerializeField] private RectTransform _rewardContainer;
+        [SerializeField] private Text _rewardAmountText;
         [SerializeField] private Text _gameOverText;
         [SerializeField] private Text _claimButtonText;
 
@@ -40,6 +43,8 @@ namespace Assets.Game.Scripts.View.Panels
             _claimButton.interactable = true;
             _gameOverText.text = _params.IsSuccess ? "Success" : "Fail";
             _claimButtonText.text = _params.IsSuccess ? "Claim" : "Retry";
+            _rewardContainer.gameObject.SetActive(_params.IsSuccess);
+            _rewardAmountText.text = _params.EarnAmount.ToString();
         }
 
         private void DisposeElements()
@@ -50,9 +55,22 @@ namespace Assets.Game.Scripts.View.Panels
         public void OnClaimButtonClicked()
         {
             _claimButton.interactable = false;
-            Debug.Log($"Current: {PlayerData.Instance.Coin}, After: {PlayerData.Instance.Coin + _params.EarnAmount}");
-            _coinElement.UpdateValue(PlayerData.Instance.Coin);
-            _params.RewardClaimed?.Invoke();
+
+            if (_params.IsSuccess)
+            {
+                _coinAnimatorElement.Move(onFirstCoinCollected: () =>
+                    {
+                        _coinElement.UpdateValue(PlayerData.Instance.Coin);
+                    },
+                    onLastCoinCollected: () =>
+                    {
+                        _params.RewardClaimed?.Invoke();
+                    });
+            }
+            else
+            {
+                _params.RewardClaimed?.Invoke();
+            }
         }
     }
 }

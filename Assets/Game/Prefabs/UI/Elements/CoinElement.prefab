@@ -61,14 +61,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.50980395}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: f600ef49aaf119d47b166bb163327b79, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -199,7 +199,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: asd
+  m_Text: 123
 --- !u!1 &2446687060989585518
 GameObject:
   m_ObjectHideFlags: 0
@@ -419,7 +419,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 29.4, y: 4.5}
-  m_SizeDelta: {x: 41, y: 41}
+  m_SizeDelta: {x: 45, y: 44}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2685583418207568679
 CanvasRenderer:
@@ -510,7 +510,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ceb263c75446b540afdcccb699f8ac8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currencyText: {fileID: 0}
+  _currencyText: {fileID: 5998138903427783763}
 --- !u!1 &6197681496233491614
 GameObject:
   m_ObjectHideFlags: 0
