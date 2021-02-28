@@ -10,7 +10,6 @@ namespace Mek.Localization
     {
         Turkish = 0,
         English = 1,
-        Italian = 2
     }
     [CreateAssetMenu(menuName = "Localization")]
     public class Localization : ScriptableObject

@@ -8,7 +8,7 @@
         public static string GameOverPanel = nameof(GameOverPanel);
 
         //Popups
-        public static string MyPopup = nameof(MyPopup);
+        public static string SettingsPopup = nameof(SettingsPopup);
 
         //Layouts
         public static string MyLayout = nameof(MyLayout);

@@ -78,7 +78,7 @@ namespace Game.Scripts
         [Button]
         private void OpenMyPopup()
         {
-            Navigation.Popup.Open(ViewTypes.MyPopup);
+            Navigation.Popup.Open(ViewTypes.SettingsPopup);
         }
         [Button]
         private void CloseMyPopup()

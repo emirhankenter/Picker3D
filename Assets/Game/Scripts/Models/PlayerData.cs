@@ -1,6 +1,7 @@
 ﻿using Mek.Models.Stats;
 using System;
 using System.Collections.Generic;
+using Mek.Localization;
 using Mek.Models;
 
 namespace Game.Scripts.Models
@@ -15,6 +16,7 @@ namespace Game.Scripts.Models
 
             // Game Specific PLayerData
             { PrefStats.PlayerLevel, new IntStat(0, Int32.MaxValue, 1) },
+            { PrefStats.Language, new IntStat(0, Int32.MaxValue, 0) },
             { PrefStats.LastActive, new DateStat(DateTime.UtcNow) },
             { PrefStats.Coin, new FloatStat(0f, float.MaxValue, 0f) },
         };
@@ -35,6 +37,12 @@ namespace Game.Scripts.Models
         {
             get => PrefsManager.GetFloat(PrefStats.Coin);
             set => PrefsManager.SetFloat(PrefStats.Coin, value);
+        }
+
+        public int Language
+        {
+            get => PrefsManager.GetInt(PrefStats.Language);
+            set => PrefsManager.SetInt(PrefStats.Language, value);
         }
 
         #region Singleton

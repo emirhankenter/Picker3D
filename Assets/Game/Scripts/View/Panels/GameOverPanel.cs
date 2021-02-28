@@ -1,4 +1,5 @@
 ﻿using Game.Scripts.Models;
+using Game.Scripts.Models.ViewParams;
 using Game.Scripts.View.Elements;
 using Mek.Localization;
 using MekNavigation;

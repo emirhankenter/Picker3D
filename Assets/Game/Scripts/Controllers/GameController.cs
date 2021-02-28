@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using Game.Scripts.Behaviours;
 using Game.Scripts.Models;
+using Game.Scripts.Models.ViewParams;
 using Game.Scripts.Utilities;
 using Mek.Controllers;
 using Mek.Localization;
@@ -34,7 +35,7 @@ namespace Game.Scripts.Controllers
             base.Awake();
 
             LocalizationManager.Init();
-            LocalizationManager.SetLanguage(Language.Turkish);
+            LocalizationManager.SetLanguage((Language)PlayerData.Instance.Language);
             PrepareLevel();
         }
 

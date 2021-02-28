@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using MekNavigation;
-using UnityEngine;
 
-public class GameOverViewParams : ViewParams
+namespace Game.Scripts.Models.ViewParams
 {
-    public Action RewardClaimed;
-    public bool IsSuccess;
-    public float EarnAmount;
-
-    public GameOverViewParams(bool isSuccess, float earnAmount, Action onRewardClaimed) : base(ViewTypes.GameOverPanel)
+    public class GameOverViewParams : MekNavigation.ViewParams
     {
-        RewardClaimed = onRewardClaimed;
-        IsSuccess = isSuccess;
-        EarnAmount = earnAmount;
+        public Action RewardClaimed;
+        public bool IsSuccess;
+        public float EarnAmount;
+
+        public GameOverViewParams(bool isSuccess, float earnAmount, Action onRewardClaimed) : base(ViewTypes.GameOverPanel)
+        {
+            RewardClaimed = onRewardClaimed;
+            IsSuccess = isSuccess;
+            EarnAmount = earnAmount;
+        }
     }
 }
