@@ -51,14 +51,23 @@ namespace Game.Scripts.Controllers
             }
             else
             {
-                var level = PlayerData.Instance.PlayerLevel > _levels.Count
-                    ? _levels.RandomElement()
-                    : _levels[(PlayerData.Instance.PlayerLevel - 1) % _levels.Count];
-
-                while (int.Parse(level.name.Replace("Level_", "")) <= 2)
+                LevelBehaviour level;
+                if (PlayerData.Instance.PlayerLevel > _levels.Count)
                 {
                     level = _levels.RandomElement();
+                    while (int.Parse(level.name.Replace("Level_", "")) <= 2)
+                    {
+                        level = _levels.RandomElement();
+                    }
                 }
+                else
+                {
+                    level = _levels[(PlayerData.Instance.PlayerLevel - 1) % _levels.Count];
+                }
+                //level = PlayerData.Instance.PlayerLevel > _levels.Count
+                //    ? _levels.RandomElement()
+                //    : _levels[(PlayerData.Instance.PlayerLevel - 1) % _levels.Count];
+
                 CurrentLevel = Instantiate(level);
             }
             CurrentLevel.Initialize(_player);
@@ -154,14 +163,22 @@ namespace Game.Scripts.Controllers
 
         private void PrepareNextLevel()
         {
-            var level = PlayerData.Instance.PlayerLevel + 1 > _levels.Count
-                ? _levels.RandomElement()
-                : _levels[(PlayerData.Instance.PlayerLevel) % _levels.Count];
-
-            while (level.name == CurrentLevel.name.Replace("(Clone)", "") || int.Parse(level.name.Replace("Level_", "")) <= 2)
+            LevelBehaviour level;
+            if (PlayerData.Instance.PlayerLevel + 1 > _levels.Count)
             {
                 level = _levels.RandomElement();
+                while (level.name == CurrentLevel.name.Replace("(Clone)", "") || int.Parse(level.name.Replace("Level_", "")) <= 2)
+                {
+                    level = _levels.RandomElement();
+                }
             }
+            else
+            {
+                level = _levels[(PlayerData.Instance.PlayerLevel) % _levels.Count];
+            }
+            //level = PlayerData.Instance.PlayerLevel + 1 > _levels.Count
+            //    ? _levels.RandomElement()
+            //    : _levels[(PlayerData.Instance.PlayerLevel) % _levels.Count];
 
             NextLevel = Instantiate(level);
             NextLevel.transform.position = new Vector3(0, 0, (CurrentLevel.StageCount) * 100f + 60f); //world space length of the level is 100 per stage and 60 for final area
