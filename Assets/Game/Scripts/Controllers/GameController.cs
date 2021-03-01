@@ -38,6 +38,7 @@ namespace Game.Scripts.Controllers
 
             LocalizationManager.Init();
             LocalizationManager.SetLanguage((Language)PlayerData.Instance.Language);
+            DragHandler.ToggleInput(false);
             PrepareLevel();
         }
 
