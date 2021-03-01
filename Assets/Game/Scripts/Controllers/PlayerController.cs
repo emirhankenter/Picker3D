@@ -53,6 +53,11 @@ namespace Game.Scripts.Controllers
             _firstInput = Vector2.zero;
             _rb = GetComponent<Rigidbody>();
             RegisterEvents();
+
+            if (!GameController.Instance.DragHandler.IsActive)
+            {
+                GameController.Instance.DragHandler.ToggleInput(true);
+            }
         }
 
         public void Dispose()
