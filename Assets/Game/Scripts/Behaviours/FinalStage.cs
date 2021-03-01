@@ -11,7 +11,7 @@ namespace Game.Scripts.Behaviours
 {
     public class FinalStage : StageBehaviour
     {
-        public event Action<int> Multiplied;
+        public static event Action<int> Multiplied;
 
         [SerializeField] private List<MultiplierArea> _multiplierAreas;
 

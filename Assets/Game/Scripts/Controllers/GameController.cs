@@ -137,7 +137,7 @@ namespace Game.Scripts.Controllers
 
             DragHandler.ToggleInput(false);
             Debug.Log("LevelCompleted");
-            Navigation.Panel.Change(new GameOverViewParams(isSuccess, earnAmount * (isSuccess ? 1 : 0), OnRewardClaimed));
+            Navigation.Panel.Change(new GameOverViewParams(isSuccess, earnAmount * (isSuccess ? 1 * CurrentLevel.Multiplier : 0), OnRewardClaimed));
             if (isSuccess)
             {
                 //PlayConfetti?.Invoke(() =>
