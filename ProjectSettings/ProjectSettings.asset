@@ -662,10 +662,10 @@ PlayerSettings:
     m_VersionCode: 1
     m_VersionName: 
   apiCompatibilityLevel: 6
-  cloudProjectId: 
+  cloudProjectId: 729cd762-c85c-44da-9112-e1d92b078604
   framebufferDepthMemorylessMode: 0
-  projectName: 
-  organizationId: 
+  projectName: Picker3D
+  organizationId: vexilloid
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0
